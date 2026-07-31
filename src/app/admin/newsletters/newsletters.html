@@ -1,0 +1,98 @@
+<div class="page">
+
+    <div class="card">
+
+        <h1>📰 Publish Newsletter</h1>
+
+        <p>Create and publish newsletters for all subscribers.</p>
+
+        <!-- Title -->
+
+        <label>Title</label>
+
+        <input
+            type="text"
+            [(ngModel)]="newsletter.title"
+            placeholder="Enter newsletter title">
+
+        <!-- Category -->
+
+        <label>Category</label>
+
+        <select [(ngModel)]="newsletter.category">
+
+            <option value="">Select Category</option>
+
+            <option>Technology</option>
+
+            <option>Business</option>
+
+            <option>Education</option>
+
+            <option>Sports</option>
+
+            <option>Health</option>
+
+            <option>General</option>
+
+        </select>
+
+        <!-- Image URL -->
+
+        <label>Image URL (Optional)</label>
+
+        <input
+            type="text"
+            [(ngModel)]="newsletter.image"
+            placeholder="https://example.com/image.jpg">
+
+        <!-- Live Preview -->
+
+        @if(newsletter.image){
+
+        <div class="image-preview">
+
+            <img
+                [src]="newsletter.image"
+                alt="Newsletter Preview">
+
+        </div>
+
+        }
+
+        <!-- Content -->
+
+        <label>Content</label>
+
+        <textarea
+            rows="10"
+            [(ngModel)]="newsletter.content"
+            placeholder="Write your newsletter here...">
+
+        </textarea>
+
+        <!-- Publish Button -->
+
+        <button
+            class="publish-btn"
+            (click)="publish()">
+
+            🚀 Publish Newsletter
+
+        </button>
+
+        <!-- Success/Error Message -->
+
+        @if(message){
+
+        <div class="message">
+
+            {{ message }}
+
+        </div>
+
+        }
+
+    </div>
+
+</div>

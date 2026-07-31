@@ -1,0 +1,147 @@
+<div class="register-page">
+
+    <div class="register-card">
+
+        <!-- Left Side -->
+
+        <div class="register-left">
+
+            <div class="logo">
+
+                📬
+
+            </div>
+
+            <h1>ZIP ZIP INFO</h1>
+
+            <h2>Join Our Community</h2>
+
+            <p>
+
+                Create your subscriber account and receive
+                the latest newsletters, announcements,
+                technology updates and exclusive content.
+
+            </p>
+
+        </div>
+
+        <!-- Right Side -->
+
+        <div class="register-right">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+
+                Register to start receiving newsletters.
+
+            </p>
+
+            <!-- Name -->
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                placeholder="Enter your full name"
+                [(ngModel)]="name">
+
+            <!-- Email -->
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+                [(ngModel)]="email">
+
+            <!-- Phone -->
+
+            <label>Phone Number</label>
+
+            <input
+                type="text"
+                maxlength="10"
+                placeholder="Enter your phone number"
+                [(ngModel)]="phone">
+
+            <!-- Password -->
+
+            <label>Password</label>
+
+            <div class="password-box">
+
+                <input
+                    [type]="showPassword ? 'text' : 'password'"
+                    placeholder="Create password"
+                    [(ngModel)]="password">
+
+                <button
+                    type="button"
+                    class="toggle-btn"
+                    (click)="showPassword = !showPassword">
+
+                    {{ showPassword ? 'Hide' : 'Show' }}
+
+                </button>
+
+            </div>
+
+            <!-- Confirm Password -->
+
+            <label>Confirm Password</label>
+
+            <div class="password-box">
+
+                <input
+                    [type]="showConfirmPassword ? 'text' : 'password'"
+                    placeholder="Confirm password"
+                    [(ngModel)]="confirmPassword">
+
+                <button
+                    type="button"
+                    class="toggle-btn"
+                    (click)="showConfirmPassword = !showConfirmPassword">
+
+                    {{ showConfirmPassword ? 'Hide' : 'Show' }}
+
+                </button>
+
+            </div>
+
+            <button
+                class="register-btn"
+                (click)="register()">
+
+                Create Account
+
+            </button>
+
+            @if(message){
+
+            <div class="message">
+
+                {{ message }}
+
+            </div>
+
+            }
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a (click)="goToLogin()">
+
+                    Sign In
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

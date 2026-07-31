@@ -1,0 +1,111 @@
+<div class="login-page">
+
+    <div class="login-card">
+
+        <!-- Left Side -->
+
+        <div class="login-left">
+
+            <div class="logo">
+
+                📬
+
+            </div>
+
+            <h1>ZIP ZIP INFO</h1>
+
+            <h2>Welcome Back!</h2>
+
+            <p>
+
+                Stay connected with the latest newsletters,
+                announcements and technology updates.
+
+            </p>
+
+        </div>
+
+        <!-- Right Side -->
+
+        <div class="login-right">
+
+            <h2>Subscriber Login</h2>
+
+            <p class="subtitle">
+
+                Sign in to continue reading newsletters.
+
+            </p>
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                [(ngModel)]="email"
+                placeholder="Enter your email">
+
+            <label>Password</label>
+
+            <input
+                [type]="showPassword ? 'text' : 'password'"
+                [(ngModel)]="password"
+                placeholder="Enter your password">
+
+            <div class="options">
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        [(ngModel)]="rememberMe">
+
+                    Remember Me
+
+                </label>
+
+                <button
+                    type="button"
+                    class="show-btn"
+                    (click)="showPassword = !showPassword">
+
+                    {{ showPassword ? 'Hide' : 'Show' }}
+
+                </button>
+
+            </div>
+
+            <button
+                class="login-btn"
+                (click)="login()">
+
+                Sign In
+
+            </button>
+
+            @if(message){
+
+            <div class="message">
+
+                {{ message }}
+
+            </div>
+
+            }
+
+            <div class="register-link">
+
+                Don't have an account?
+
+                <a (click)="goToRegister()">
+
+                    Create Account
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

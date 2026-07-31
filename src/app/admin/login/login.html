@@ -1,0 +1,98 @@
+<div class="login-page">
+
+    <div class="login-card">
+
+        <div class="logo">
+            📬
+        </div>
+
+        <h1>ZIP ZIP INFO</h1>
+
+        <h2 class="title">
+            Administrator Login
+        </h2>
+
+        <p class="subtitle">
+            Sign in to manage newsletters, subscribers and reports.
+        </p>
+
+        <!-- Username -->
+
+        <div class="form-group">
+
+            <label>Username</label>
+
+            <input
+                type="text"
+                placeholder="Enter Username"
+                [(ngModel)]="username">
+
+        </div>
+
+        <!-- Password -->
+
+        <div class="form-group">
+
+            <label>Password</label>
+
+            <div class="password-box">
+
+                <input
+                    [type]="showPassword ? 'text' : 'password'"
+                    placeholder="Enter Password"
+                    [(ngModel)]="password">
+
+                <button
+                    type="button"
+                    class="eye-btn"
+                    (click)="showPassword = !showPassword">
+
+                    {{ showPassword ? '🙈' : '👁' }}
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Remember Me -->
+
+        <div class="remember">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    [(ngModel)]="rememberMe">
+
+                Remember Me
+
+            </label>
+
+        </div>
+
+        <!-- Error -->
+
+        @if(errorMessage){
+
+            <div class="error">
+
+                {{ errorMessage }}
+
+            </div>
+
+        }
+
+        <!-- Login -->
+
+        <button
+            class="login-btn"
+            (click)="login()">
+
+            Login
+
+        </button>
+
+    </div>
+
+</div>

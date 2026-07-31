@@ -1,0 +1,304 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+    background:#EEF4FF;
+
+}
+
+.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+    background:linear-gradient(135deg,#1E3A8A,#2563EB);
+
+}
+
+.login-card{
+
+    width:1000px;
+
+    max-width:100%;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    background:white;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+
+}
+
+/* ==========================
+   Left Side
+========================== */
+
+.login-left{
+
+    background:#1E3A8A;
+
+    color:white;
+
+    padding:60px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.logo{
+
+    font-size:70px;
+
+    margin-bottom:25px;
+
+}
+
+.login-left h1{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+.login-left h2{
+
+    margin-bottom:20px;
+
+    font-size:30px;
+
+}
+
+.login-left p{
+
+    line-height:1.8;
+
+    opacity:.9;
+
+}
+
+/* ==========================
+   Right Side
+========================== */
+
+.login-right{
+
+    padding:60px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.login-right h2{
+
+    color:#1E3A8A;
+
+    margin-bottom:8px;
+
+    font-size:32px;
+
+}
+
+.subtitle{
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+
+label{
+
+    font-weight:600;
+
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #D1D5DB;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+input:focus{
+
+    border-color:#2563EB;
+
+    box-shadow:0 0 10px rgba(37,99,235,.25);
+
+}
+
+.options{
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.remember{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.show-btn{
+
+    background:none;
+
+    border:none;
+
+    color:#2563EB;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+.login-btn{
+
+    margin-top:30px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2563EB;
+
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login-btn:hover{
+
+    background:#1E40AF;
+
+}
+
+.message{
+
+    margin-top:20px;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    background:#FEE2E2;
+
+    color:#B91C1C;
+
+    text-align:center;
+
+}
+
+.register-link{
+
+    margin-top:25px;
+
+    text-align:center;
+
+}
+
+.register-link a{
+
+    color:#2563EB;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+}
+
+.register-link a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ==========================
+   Mobile
+========================== */
+
+@media(max-width:900px){
+
+    .login-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .login-left{
+
+        padding:40px;
+
+        text-align:center;
+
+    }
+
+    .login-right{
+
+        padding:40px;
+
+    }
+
+}

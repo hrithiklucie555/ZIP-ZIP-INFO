@@ -1,0 +1,97 @@
+<!-- Loading -->
+
+@if(loading){
+
+<div class="loading">
+
+    Loading newsletter...
+
+</div>
+
+}
+
+<!-- Newsletter -->
+
+@if(!loading && newsletter){
+
+<div class="page">
+
+    <div class="card">
+
+        <button
+            class="back-btn"
+            (click)="back()">
+
+            ← Back to Inbox
+
+        </button>
+
+        <span class="category">
+
+            {{ newsletter.category }}
+
+        </span>
+
+        <h1>
+
+            {{ newsletter.title }}
+
+        </h1>
+
+        <p class="date">
+
+            📅 Published on
+
+            {{ newsletter.publishedAt | date:'dd MMM yyyy' }}
+
+        </p>
+
+        @if(newsletter.image){
+
+        <img
+            [src]="newsletter.image"
+            alt="Newsletter Image">
+
+        }
+
+        <div class="content">
+
+            {{ newsletter.content }}
+
+        </div>
+
+    </div>
+
+</div>
+
+}
+
+<!-- Newsletter Not Found -->
+
+@if(!loading && !newsletter){
+
+<div class="not-found">
+
+    <h2>
+
+        📭 Newsletter not found
+
+    </h2>
+
+    <p>
+
+        The newsletter you're looking for doesn't exist.
+
+    </p>
+
+    <button
+        class="back-btn"
+        (click)="back()">
+
+        ← Back to Inbox
+
+    </button>
+
+</div>
+
+}

@@ -1,0 +1,216 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.home-page{
+
+    min-height:100vh;
+
+    background:#EEF4FF;
+
+    padding:40px;
+
+}
+
+/* ==========================
+   Welcome Card
+========================== */
+
+.welcome-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    margin-bottom:35px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.welcome-card h1{
+
+    color:#1E3A8A;
+
+    font-size:34px;
+
+    margin-bottom:15px;
+
+}
+
+.welcome-card h2{
+
+    color:#333;
+
+    margin-bottom:10px;
+
+}
+
+.email{
+
+    color:#666;
+
+    font-size:16px;
+
+}
+
+/* ==========================
+   Action Cards
+========================== */
+
+.action-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+.action-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.action-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.icon{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+.action-card h2{
+
+    color:#1E3A8A;
+
+    margin-bottom:15px;
+
+}
+
+.action-card p{
+
+    color:#666;
+
+    line-height:1.6;
+
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.primary-btn{
+
+    margin-top:25px;
+
+    padding:12px 22px;
+
+    background:#2563EB;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.primary-btn:hover{
+
+    background:#1E40AF;
+
+}
+
+.logout-section{
+
+    margin-top:40px;
+
+    text-align:right;
+
+}
+
+.logout-btn{
+
+    padding:12px 24px;
+
+    background:#DC2626;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#B91C1C;
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:768px){
+
+    .home-page{
+
+        padding:20px;
+
+    }
+
+    .welcome-card{
+
+        padding:25px;
+
+    }
+
+    .action-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .logout-section{
+
+        text-align:center;
+
+    }
+
+}

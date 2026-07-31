@@ -1,0 +1,151 @@
+<header class="topbar">
+
+    <div>
+
+        <h1>Admin Dashboard</h1>
+
+        <p>Welcome back, Hrithik 👋</p>
+
+    </div>
+
+</header>
+
+<!-- KPI Cards -->
+
+<section class="cards">
+
+    <div class="card">
+
+        <div class="icon">👥</div>
+
+        <h4>Total Subscribers</h4>
+
+        <h2>{{ totalSubscribers }}</h2>
+
+        <small>Registered subscribers</small>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon">📧</div>
+
+        <h4>Gmail Users</h4>
+
+        <h2>{{ gmailSubscribers }}</h2>
+
+        <small>Using Gmail</small>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon">📅</div>
+
+        <h4>Today's Subscribers</h4>
+
+        <h2>{{ todaysSubscribers }}</h2>
+
+        <small>Joined today</small>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icon">📰</div>
+
+        <h4>Published Newsletters</h4>
+
+        <h2>{{ totalNewsletters }}</h2>
+
+        <small>Total newsletters</small>
+
+    </div>
+
+</section>
+
+<!-- Bottom Grid -->
+
+<section class="bottom-grid">
+
+    <!-- Recent Subscribers -->
+
+    <div class="panel">
+
+        <h3>Recent Subscribers</h3>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @for (subscriber of subscribers.slice(0,5); track subscriber.id) {
+
+                    <tr>
+
+                        <td>{{ subscriber.name }}</td>
+
+                        <td>{{ subscriber.email }}</td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- Recent Newsletters -->
+
+    <div class="panel">
+
+        <h3>Recent Newsletters</h3>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Title</th>
+
+                    <th>Category</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @for (newsletter of newsletters.slice(0,5); track newsletter.id) {
+
+                    <tr>
+
+                        <td>{{ newsletter.title }}</td>
+
+                        <td>{{ newsletter.category }}</td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>

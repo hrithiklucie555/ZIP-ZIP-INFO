@@ -1,0 +1,87 @@
+<div class="page">
+
+    <!-- Header -->
+
+    <div class="top">
+
+        <div>
+
+            <h1>📥 Newsletter Inbox</h1>
+
+            <p>
+
+                Browse the latest newsletters published by ZIP ZIP INFO.
+
+            </p>
+
+        </div>
+
+        <input
+            type="text"
+            placeholder="🔍 Search newsletters..."
+            [(ngModel)]="search"
+            (input)="filterNewsletters()">
+
+    </div>
+
+    <!-- Newsletter Cards -->
+
+    <div class="newsletter-grid">
+
+        <div
+            class="newsletter-card"
+            *ngFor="let newsletter of filteredNewsletters">
+
+            <div class="card-header">
+
+                <h2>
+
+                    {{ newsletter.title }}
+
+                </h2>
+
+                <span class="category">
+
+                    {{ newsletter.category }}
+
+                </span>
+
+            </div>
+
+            <p class="date">
+
+                📅 Published:
+                {{ newsletter.publishedAt | date:'dd MMM yyyy' }}
+
+            </p>
+
+            <p class="preview">
+
+                {{ newsletter.content | slice:0:120 }}
+
+                ...
+
+            </p>
+
+            <button
+                (click)="openNewsletter(newsletter.id)">
+
+                📖 Read Newsletter
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Empty State -->
+
+    <div
+        class="empty"
+        *ngIf="filteredNewsletters.length === 0">
+
+        📭 No newsletters found.
+
+    </div>
+
+</div>

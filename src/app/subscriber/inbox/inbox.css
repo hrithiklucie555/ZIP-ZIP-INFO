@@ -1,0 +1,87 @@
+.page{
+
+    padding:40px;
+
+    background:#eef4ff;
+
+    min-height:100vh;
+
+}
+
+.page h1{
+
+    color:#1E3A8A;
+
+    margin-bottom:30px;
+
+}
+
+.newsletter-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.newsletter-card h2{
+
+    color:#1E3A8A;
+
+    margin-bottom:10px;
+
+}
+
+.category{
+
+    display:inline-block;
+
+    background:#2563EB;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    margin-bottom:15px;
+
+    font-size:14px;
+
+}
+
+.newsletter-card p{
+
+    margin:15px 0;
+
+    color:#666;
+
+}
+
+.newsletter-card button{
+
+    background:#2563EB;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.newsletter-card button:hover{
+
+    background:#1E40AF;
+
+}

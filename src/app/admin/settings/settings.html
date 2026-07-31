@@ -1,0 +1,209 @@
+<div class="page">
+
+    <!-- Header -->
+
+    <div class="top">
+
+        <h1>⚙ Settings</h1>
+
+        <p>
+            Manage your account, security and application preferences.
+        </p>
+
+    </div>
+
+    <!-- ==========================
+         Profile + Password
+    ========================== -->
+
+    <div class="grid">
+
+        <!-- Profile -->
+
+        <div class="card">
+
+            <h2>👤 Admin Profile</h2>
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                [(ngModel)]="adminName">
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                [(ngModel)]="adminEmail">
+
+            <label>Phone Number</label>
+
+            <input
+                type="text"
+                [(ngModel)]="adminPhone">
+
+            <button
+                class="save-btn"
+                (click)="saveProfile()">
+
+                💾 Save Profile
+
+            </button>
+
+        </div>
+
+        <!-- Password -->
+
+        <div class="card">
+
+            <h2>🔒 Change Password</h2>
+
+            <label>Current Password</label>
+
+            <input
+                type="password"
+                [(ngModel)]="currentPassword">
+
+            <label>New Password</label>
+
+            <input
+                type="password"
+                [(ngModel)]="newPassword">
+
+            <label>Confirm Password</label>
+
+            <input
+                type="password"
+                [(ngModel)]="confirmPassword">
+
+            <button
+                class="save-btn"
+                (click)="updatePassword()">
+
+                🔑 Update Password
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================
+         Data Management
+    ========================== -->
+
+    <div class="card full-width">
+
+        <h2>📦 Data Management</h2>
+
+        <p class="section-text">
+
+            Manage subscriber and newsletter data.
+
+        </p>
+
+        <div class="data-buttons">
+
+            <button class="green-btn">
+
+                📤 Export Subscribers
+
+            </button>
+
+            <button class="blue-btn">
+
+                📥 Import Subscribers
+
+            </button>
+
+            <button class="green-btn">
+
+                📰 Export Newsletters
+
+            </button>
+
+            <button class="blue-btn">
+
+                📥 Import Newsletters
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================
+         System Information
+    ========================== -->
+
+    <div class="card full-width">
+
+        <h2>System Information</h2>
+
+        <table class="info-table">
+
+            <tr>
+
+                <td>Application</td>
+
+                <td>ZIP ZIP INFO</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Version</td>
+
+                <td>1.0</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Frontend</td>
+
+                <td>Angular 20</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Backend</td>
+
+                <td>Node.js + Express</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Database</td>
+
+                <td>JSON Storage</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Developer</td>
+
+                <td>Hrithik</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    <!-- Message -->
+
+    @if(message){
+
+    <div class="message">
+
+        {{ message }}
+
+    </div>
+
+    }
+
+</div>

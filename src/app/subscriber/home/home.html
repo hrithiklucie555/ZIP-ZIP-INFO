@@ -1,0 +1,88 @@
+<div class="home-page">
+
+    <div class="welcome-card">
+
+        <h1>📬 ZIP ZIP INFO</h1>
+
+        <h2>
+
+            Heyy,
+
+            {{ subscriberName }} 👋
+
+        </h2>
+
+        <p class="email">
+
+            {{ subscriberEmail }}
+
+        </p>
+
+    </div>
+
+    <div class="action-grid">
+
+        <div class="action-card">
+
+            <div class="icon">
+
+                📬
+
+            </div>
+
+            <h2>Inbox</h2>
+
+            <p>
+
+                View all published newsletters.
+
+            </p>
+
+            <button
+
+                class="primary-btn"
+
+                (click)="openInbox()">
+
+                Open Inbox
+
+            </button>
+
+        </div>
+
+        <div class="action-card">
+
+            <div class="icon">
+
+                📰
+
+            </div>
+
+            <h2>Stay Updated</h2>
+
+            <p>
+
+                New newsletters are published regularly.
+                Visit your inbox to read the latest editions.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="logout-section">
+
+        <button
+
+            class="logout-btn"
+
+            (click)="logout()">
+
+            🚪 Logout
+
+        </button>
+
+    </div>
+
+</div>

@@ -1,0 +1,234 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* ===========================
+   Top Bar
+=========================== */
+
+.topbar{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    margin-bottom:35px;
+
+}
+
+.topbar h1{
+
+    color:#1E3A8A;
+
+    font-size:36px;
+
+}
+
+.topbar p{
+
+    margin-top:8px;
+
+    color:#666;
+
+}
+
+
+/* ===========================
+   KPI Cards
+=========================== */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    border-left:6px solid #2563EB;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.card .icon{
+
+    font-size:36px;
+
+    margin-bottom:15px;
+
+}
+
+.card h4{
+
+    color:#666;
+
+    margin-bottom:10px;
+
+}
+
+.card h2{
+
+    font-size:38px;
+
+    color:#1E3A8A;
+
+    margin-bottom:10px;
+
+}
+
+.card small{
+
+    color:#888;
+
+}
+
+
+/* ===========================
+   Bottom Grid
+=========================== */
+
+.bottom-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+}
+
+.panel{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.panel h3{
+
+    color:#1E3A8A;
+
+    margin-bottom:20px;
+
+}
+
+
+/* ===========================
+   Tables
+=========================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#2563EB;
+
+    color:white;
+
+    padding:14px;
+
+    text-align:left;
+
+}
+
+td{
+
+    padding:14px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+tr:hover{
+
+    background:#EEF4FF;
+
+}
+
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:1100px){
+
+    .bottom-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+.warning{
+
+    color:#DC2626;
+
+    margin:20px 0;
+
+    font-weight:600;
+
+}
+
+.delete-confirm-btn{
+
+    background:#DC2626;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.delete-confirm-btn:hover{
+
+    background:#B91C1C;
+
+}

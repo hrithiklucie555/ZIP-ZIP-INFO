@@ -1,0 +1,360 @@
+*{
+    box-sizing:border-box;
+}
+
+.page{
+
+    padding:20px;
+
+}
+
+/* ==========================
+   Header
+========================== */
+
+.top{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+    gap:20px;
+    flex-wrap:wrap;
+
+}
+
+.top h1{
+
+    color:#1E3A8A;
+    font-size:34px;
+    margin-bottom:6px;
+
+}
+
+.top p{
+
+    color:#666;
+    font-size:15px;
+
+}
+
+.top strong{
+
+    color:#2563EB;
+
+}
+
+.top input{
+
+    width:350px;
+    max-width:100%;
+    padding:14px 18px;
+    border:1px solid #D1D5DB;
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+
+}
+
+.top input:focus{
+
+    border-color:#2563EB;
+    box-shadow:0 0 12px rgba(37,99,235,.25);
+
+}
+
+/* ==========================
+   Table
+========================== */
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+thead{
+
+    background:#2563EB;
+
+}
+
+th{
+
+    color:white;
+    padding:18px;
+    text-align:left;
+    font-size:15px;
+
+}
+
+td{
+
+    padding:16px;
+    border-bottom:1px solid #EEF2F7;
+    font-size:15px;
+    color:#444;
+
+}
+
+tbody tr{
+
+    transition:.25s;
+
+}
+
+tbody tr:hover{
+
+    background:#F5F9FF;
+
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.edit-btn{
+
+    background:#2563EB;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:8px 16px;
+    cursor:pointer;
+    margin-right:8px;
+    transition:.25s;
+
+}
+
+.edit-btn:hover{
+
+    background:#1E40AF;
+    transform:translateY(-2px);
+
+}
+
+.delete-btn{
+
+    background:#DC2626;
+    color:white;
+    border:none;
+    border-radius:8px;
+    padding:8px 16px;
+    cursor:pointer;
+    transition:.25s;
+
+}
+
+.delete-btn:hover{
+
+    background:#B91C1C;
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+   Empty State
+========================== */
+
+.empty{
+
+    text-align:center;
+    padding:30px;
+    color:#777;
+    font-style:italic;
+
+}
+
+/* ==========================
+   Modal
+========================== */
+
+.modal-overlay{
+
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+
+}
+
+.modal{
+
+    width:500px;
+    max-width:90%;
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+    animation:popup .25s ease;
+
+}
+
+.modal h2{
+
+    color:#1E3A8A;
+    margin-bottom:25px;
+
+}
+
+.form-group{
+
+    margin-bottom:18px;
+
+}
+
+.form-group label{
+
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+
+}
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #D1D5DB;
+    border-radius:10px;
+    font-size:15px;
+    resize:vertical;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    outline:none;
+    border-color:#2563EB;
+    box-shadow:0 0 8px rgba(37,99,235,.25);
+
+}
+
+.modal-buttons{
+
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    margin-top:25px;
+
+}
+
+.cancel-btn{
+
+    background:#6B7280;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:10px;
+    cursor:pointer;
+
+}
+
+.cancel-btn:hover{
+
+    background:#4B5563;
+
+}
+
+.save-btn{
+
+    background:#2563EB;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:10px;
+    cursor:pointer;
+
+}
+
+.save-btn:hover{
+
+    background:#1E40AF;
+
+}
+
+.warning{
+
+    color:#DC2626;
+    margin:20px 0;
+    font-weight:600;
+
+}
+
+.delete-confirm-btn{
+
+    background:#DC2626;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:10px;
+    cursor:pointer;
+
+}
+
+.delete-confirm-btn:hover{
+
+    background:#B91C1C;
+
+}
+
+/* ==========================
+   Animation
+========================== */
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+        transform:scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:900px){
+
+    .top{
+
+        flex-direction:column;
+        align-items:flex-start;
+
+    }
+
+    .top input{
+
+        width:100%;
+
+    }
+
+    table{
+
+        display:block;
+        overflow-x:auto;
+
+    }
+
+}

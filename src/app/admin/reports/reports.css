@@ -1,0 +1,254 @@
+/* ======================================
+   GLOBAL
+====================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:'Segoe UI',sans-serif;
+
+}
+
+/* ======================================
+   PAGE
+====================================== */
+
+.page{
+
+
+    padding:20px;
+
+}
+
+/* ======================================
+   HEADER
+====================================== */
+
+.top{
+
+    margin-bottom:35px;
+
+}
+
+.top h1{
+
+    font-size:40px;
+
+    color:#1E3A8A;
+
+    margin-bottom:8px;
+
+}
+
+.top p{
+
+    font-size:17px;
+
+    color:#6B7280;
+
+}
+
+/* ======================================
+   TOP KPI CARDS
+====================================== */
+
+.top-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    height:120px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.12);
+
+}
+
+.card h3{
+
+    color:#6B7280;
+
+    font-size:16px;
+
+    margin-bottom:18px;
+
+}
+
+.card h1{
+
+    color:#1E3A8A;
+
+    font-size:42px;
+
+    font-weight:700;
+
+}
+
+/* ======================================
+   CHARTS
+====================================== */
+
+.charts{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+    margin-bottom:40px;
+
+}
+
+.chart-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:40px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.chart-card h2{
+
+    text-align:center;
+
+    color:#1E3A8A;
+
+    margin-bottom:25px;
+
+    font-size:28px;
+
+}
+
+canvas{
+
+    width:100% !important;
+
+    height:380px !important;
+
+}
+
+/* ======================================
+   BOTTOM KPI CARDS
+====================================== */
+
+.bottom-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+}
+
+.bottom-cards .card{
+
+    background:white;
+
+}
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+
+@media(max-width:1200px){
+
+.top-cards{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.bottom-cards{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.charts{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.page{
+
+    padding:20px;
+
+}
+
+.top h1{
+
+    font-size:32px;
+
+}
+
+.top-cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.bottom-cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.chart-card{
+
+    padding:20px;
+
+}
+
+canvas{
+
+    height:300px !important;
+
+}
+
+}
