@@ -1,0 +1,334 @@
+<div class="page">
+
+    <!-- ===========================
+         HEADER
+    =========================== -->
+
+    <div class="header">
+
+        <h1>
+            <i class="fa-solid fa-headset"></i>
+            Help & Support
+        </h1>
+
+        <p>
+            Need assistance? Submit a support request and our team will respond as soon as possible.
+        </p>
+
+    </div>
+
+    <!-- ===========================
+         SUCCESS MESSAGE
+    =========================== -->
+
+    <div
+        class="success-message"
+        *ngIf="message">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        {{ message }}
+
+    </div>
+
+    <!-- ===========================
+         CREATE TICKET
+    =========================== -->
+
+    <div class="ticket-form">
+
+        <h2>
+
+            <i class="fa-solid fa-plus"></i>
+
+            Create Support Ticket
+
+        </h2>
+
+        <div class="form-grid">
+
+            <div>
+
+                <label>Subscriber Name</label>
+
+                <input
+                    type="text"
+                    [(ngModel)]="ticket.subscriber"
+                    readonly>
+
+            </div>
+
+            <div>
+
+                <label>Email Address</label>
+
+                <input
+                    type="email"
+                    [(ngModel)]="ticket.email"
+                    readonly>
+
+            </div>
+
+            <div>
+
+                <label>Category</label>
+
+                <select [(ngModel)]="ticket.category">
+
+                    <option value="">Select Category</option>
+
+                    <option>Technical</option>
+
+                    <option>Newsletter</option>
+
+                    <option>Subscription</option>
+
+                    <option>Account</option>
+
+                    <option>Feedback</option>
+
+                </select>
+
+            </div>
+
+            <div>
+
+                <label>Subject</label>
+
+                <input
+                    type="text"
+                    placeholder="Enter subject"
+                    [(ngModel)]="ticket.subject">
+
+            </div>
+
+            <div class="full-width">
+
+                <label>Description</label>
+
+                <textarea
+                    rows="6"
+                    placeholder="Describe your issue..."
+                    [(ngModel)]="ticket.description">
+                </textarea>
+
+            </div>
+
+        </div>
+
+        <button
+            class="submit-btn"
+            (click)="submitTicket()"
+            [disabled]="loading">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            {{ loading ? 'Submitting...' : 'Submit Ticket' }}
+
+        </button>
+
+    </div>
+
+    <!-- ===========================
+         MY TICKETS
+    =========================== -->
+
+    <div class="tickets-section">
+
+        <h2>
+
+            <i class="fa-solid fa-ticket"></i>
+
+            My Support Tickets
+
+        </h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Ticket ID</th>
+
+                    <th>Category</th>
+
+                    <th>Status</th>
+
+                    <th>Priority</th>
+
+                    <th>Date</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let ticket of tickets">
+
+                    <td>{{ ticket.ticketId }}</td>
+
+                    <td>{{ ticket.category }}</td>
+
+                    <td>
+
+                        <span
+                            class="status"
+                            [ngClass]="ticket.status.toLowerCase().replace(' ','-')">
+
+                            {{ ticket.status }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="priority"
+                            [ngClass]="ticket.priority.toLowerCase()">
+
+                            {{ ticket.priority }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        {{ ticket.createdAt | date:'dd MMM yyyy' }}
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="view-btn"
+                            (click)="viewTicket(ticket)">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr *ngIf="tickets.length === 0">
+
+                    <td colspan="6">
+
+                        <div class="empty-state">
+
+                            <i class="fa-solid fa-inbox"></i>
+
+                            <h3>No Tickets Yet</h3>
+
+                            <p>
+
+                                You haven't submitted any support requests.
+
+                            </p>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+     VIEW TICKET
+=========================== -->
+
+<div
+    class="ticket-modal"
+    *ngIf="selectedTicket">
+
+    <div class="ticket-card">
+
+        <div class="modal-header">
+
+            <h2>
+
+                {{ selectedTicket.ticketId }}
+
+            </h2>
+
+            <button
+                class="close-btn"
+                (click)="closeTicket()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div class="ticket-details">
+
+            <p>
+
+                <strong>Category:</strong>
+
+                {{ selectedTicket.category }}
+
+            </p>
+
+            <p>
+
+                <strong>Subject:</strong>
+
+                {{ selectedTicket.subject }}
+
+            </p>
+
+            <p>
+
+                <strong>Status:</strong>
+
+                {{ selectedTicket.status }}
+
+            </p>
+
+            <p>
+
+                <strong>Priority:</strong>
+
+                {{ selectedTicket.priority }}
+
+            </p>
+
+            <label>Description</label>
+
+            <textarea
+                readonly>
+
+{{ selectedTicket.description }}
+
+            </textarea>
+
+            <label>Support Team Reply</label>
+
+            <textarea
+                readonly>
+
+{{ selectedTicket.reply || 'No reply yet.' }}
+
+            </textarea>
+
+        </div>
+
+    </div>
+
+</div>

@@ -17,6 +17,8 @@ import { Inbox } from './subscriber/inbox/inbox';
 import { ReadNewsletter } from './subscriber/read-newsletter/read-newsletter';
 
 import { Layout } from './layout/layout';
+import { HelpSupport } from './admin/help-support/help-support';
+import { HelpSupport as SubscriberHelpSupport } from './subscriber/help-support/help-support';
 
 export const routes: Routes = [
 
@@ -99,6 +101,16 @@ export const routes: Routes = [
     path: 'newsletter/:id',
     component: ReadNewsletter
   },
+
+  {
+    path: 'help-support',
+    component: HelpSupport
+   },
+
+   {
+    path: 'subscriber/help-support',
+    component: SubscriberHelpSupport
+   },
 
 
   {

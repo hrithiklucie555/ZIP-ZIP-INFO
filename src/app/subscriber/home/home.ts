@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -11,27 +11,39 @@ import { Router } from '@angular/router';
 })
 export class Home implements OnInit {
 
+  constructor(private router: Router,
+    
+  ) {}
+
+  // ==========================
+  // Subscriber Information
+  // ==========================
+
   subscriberName = '';
+
   subscriberEmail = '';
 
-  constructor(
-    private router: Router,
-    private cdr:ChangeDetectorRef
-  ) {}
+  // ==========================
+  // Dashboard Statistics
+  // ==========================
+
+  unreadCount = 5;
+
+  readCount = 12;
+
+  ticketCount = 2;
+
+  notificationCount = 3;
+
+  // ==========================
+  // On Init
+  // ==========================
 
   ngOnInit(): void {
 
     const subscriber = localStorage.getItem('subscriber');
 
-    if (!subscriber) {
-
-      this.router.navigate(['/subscriber-login']);
-
-      return;
-
-    }
-
-    try {
+    if (subscriber) {
 
       const user = JSON.parse(subscriber);
 
@@ -39,29 +51,71 @@ export class Home implements OnInit {
 
       this.subscriberEmail = user.email;
 
+
     }
+    else{
 
-    catch {
+      // Temporary values
 
-      localStorage.removeItem('subscriber');
+      this.subscriberName = 'Subscriber';
 
-      this.router.navigate(['/subscriber-login']);
+      this.subscriberEmail = 'subscriber@example.com';
 
     }
 
   }
+
+  // ==========================
+  // Navigation
+  // ==========================
 
   openInbox(): void {
 
-    this.router.navigate(['/subscriber-inbox']);
+    this.router.navigate(['/subscriber/inbox']);
 
   }
+
+  openReadNewsletters(): void {
+
+    this.router.navigate(['/subscriber/read-newsletter']);
+
+  }
+
+  openSupport(): void {
+
+    this.router.navigate(['/subscriber/help-support']);
+
+  }
+
+  // Future Features
+
+  openProfile(): void {
+
+    console.log('Profile Coming Soon');
+
+  }
+
+  openNotifications(): void {
+
+    console.log('Notifications Coming Soon');
+
+  }
+
+  openActivity(): void {
+
+    console.log('Activity Coming Soon');
+
+  }
+
+  // ==========================
+  // Logout
+  // ==========================
 
   logout(): void {
 
     localStorage.removeItem('subscriber');
 
-    this.router.navigate(['/subscriber-login']);
+    this.router.navigate(['/subscriber/login']);
 
   }
 

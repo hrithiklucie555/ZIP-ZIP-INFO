@@ -1,47 +1,98 @@
-<div class="home-page">
+<div class="dashboard">
+
+    <!-- ===========================
+         WELCOME SECTION
+    ============================ -->
 
     <div class="welcome-card">
 
-        <h1>📬 ZIP ZIP INFO</h1>
+        <div class="welcome-left">
 
-        <h2>
+            <h1>
+                <i class="fa-solid fa-envelope-open-text"></i>
+                ZIP ZIP INFO
+            </h1>
 
-            Heyy,
+            <h2>
+                Hey, {{ subscriberName }} 👋
+            </h2>
 
-            {{ subscriberName }} 👋
+            <p>{{ subscriberEmail }}</p>
 
-        </h2>
-
-        <p class="email">
-
-            {{ subscriberEmail }}
-
-        </p>
+        </div>
 
     </div>
 
-    <div class="action-grid">
+    <!-- ===========================
+         QUICK STATS
+    ============================ -->
 
-        <div class="action-card">
+    <div class="stats-grid">
 
-            <div class="icon">
+        <div class="stat-card">
 
-                📬
+            <i class="fa-solid fa-envelope"></i>
 
-            </div>
+            <h2>{{ unreadCount }}</h2>
 
-            <h2>Inbox</h2>
+            <p>Unread</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <h2>{{ readCount }}</h2>
+
+            <p>Read</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-headset"></i>
+
+            <h2>{{ ticketCount }}</h2>
+
+            <p>Support Tickets</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <h2>{{ notificationCount }}</h2>
+
+            <p>Notifications</p>
+
+        </div>
+
+    </div>
+
+    <!-- ===========================
+         FEATURE CARDS
+    ============================ -->
+
+    <div class="features-grid">
+
+        <!-- Inbox -->
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-envelope-open-text feature-icon"></i>
+
+            <h3>Inbox</h3>
 
             <p>
 
-                View all published newsletters.
+                View all newsletters sent to your account.
 
             </p>
 
             <button
-
                 class="primary-btn"
-
                 (click)="openInbox()">
 
                 Open Inbox
@@ -50,36 +101,138 @@
 
         </div>
 
-        <div class="action-card">
+        <!-- Latest Newsletters -->
 
-            <div class="icon">
+        <div class="feature-card">
 
-                📰
+            <i class="fa-solid fa-newspaper feature-icon"></i>
 
-            </div>
-
-            <h2>Stay Updated</h2>
+            <h3>Latest Newsletters</h3>
 
             <p>
 
-                New newsletters are published regularly.
-                Visit your inbox to read the latest editions.
+                Read the latest published newsletters.
 
             </p>
+
+            <button
+                class="primary-btn"
+                (click)="openReadNewsletters()">
+
+                Read Now
+
+            </button>
+
+        </div>
+
+        <!-- Help & Support -->
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-headset feature-icon"></i>
+
+            <h3>Help & Support</h3>
+
+            <p>
+
+                Raise support tickets and track your requests.
+
+            </p>
+
+            <button
+                class="primary-btn"
+                (click)="openSupport()">
+
+                Open Support
+
+            </button>
+
+        </div>
+
+        <!-- Profile -->
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-user feature-icon"></i>
+
+            <h3>My Profile</h3>
+
+            <p>
+
+                View and manage your account information.
+
+            </p>
+
+            <button
+                class="secondary-btn">
+
+                Coming Soon
+
+            </button>
+
+        </div>
+
+        <!-- Notifications -->
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-bell feature-icon"></i>
+
+            <h3>Notifications</h3>
+
+            <p>
+
+                Check important updates and alerts.
+
+            </p>
+
+            <button
+                class="secondary-btn">
+
+                Coming Soon
+
+            </button>
+
+        </div>
+
+        <!-- Activity -->
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-chart-line feature-icon"></i>
+
+            <h3>My Activity</h3>
+
+            <p>
+
+                View your newsletter and support activity.
+
+            </p>
+
+            <button
+                class="secondary-btn">
+
+                Coming Soon
+
+            </button>
 
         </div>
 
     </div>
 
-    <div class="logout-section">
+    <!-- ===========================
+         LOGOUT
+    ============================ -->
+
+    <div class="logout-container">
 
         <button
-
             class="logout-btn"
-
             (click)="logout()">
 
-            🚪 Logout
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
 
         </button>
 

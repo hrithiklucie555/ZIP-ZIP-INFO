@@ -1,0 +1,815 @@
+/* ======================================================
+   SUBSCRIBER HELP & SUPPORT
+   PART 1
+====================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.page{
+
+    min-height:100vh;
+
+    padding:35px;
+
+    background:#EEF4FF;
+
+}
+
+/* ======================================
+   HEADER
+====================================== */
+
+.header{
+
+    margin-bottom:30px;
+
+}
+
+.header h1{
+
+    font-size:38px;
+
+    color:#1E3A8A;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:10px;
+
+}
+
+.header h1 i{
+
+    color:#3568F3;
+
+}
+
+.header p{
+
+    color:#6B7280;
+
+    font-size:16px;
+
+}
+
+/* ======================================
+   SUCCESS MESSAGE
+====================================== */
+
+.success-message{
+
+    background:#E8F5E9;
+
+    color:#2E7D32;
+
+    border-left:5px solid #4CAF50;
+
+    padding:15px 20px;
+
+    border-radius:12px;
+
+    margin-bottom:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:600;
+
+}
+
+.success-message i{
+
+    font-size:22px;
+
+}
+
+/* ======================================
+   CREATE TICKET CARD
+====================================== */
+
+.ticket-form{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    margin-bottom:35px;
+
+}
+
+.ticket-form h2{
+
+    color:#1E3A8A;
+
+    margin-bottom:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+/* ======================================
+   FORM GRID
+====================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:22px;
+
+}
+
+.full-width{
+
+    grid-column:1/-1;
+
+}
+
+.form-grid label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#374151;
+
+    font-weight:600;
+
+}
+
+.form-grid input,
+
+.form-grid select,
+
+.form-grid textarea{
+
+    width:100%;
+
+    padding:13px 15px;
+
+    border:1px solid #D1D5DB;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+    background:white;
+
+}
+
+.form-grid input:focus,
+
+.form-grid select:focus,
+
+.form-grid textarea:focus{
+
+    outline:none;
+
+    border-color:#3568F3;
+
+    box-shadow:0 0 8px rgba(53,104,243,.15);
+
+}
+
+.form-grid textarea{
+
+    resize:vertical;
+
+    min-height:140px;
+
+}
+
+/* ======================================
+   SUBMIT BUTTON
+====================================== */
+
+.submit-btn{
+
+    margin-top:28px;
+
+    background:#3568F3;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px 24px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.submit-btn:hover{
+
+    background:#234FC9;
+
+    transform:translateY(-2px);
+
+}
+
+.submit-btn:disabled{
+
+    background:#A5B4FC;
+
+    cursor:not-allowed;
+
+}
+/* ======================================================
+   PART 2 - MY TICKETS TABLE
+====================================================== */
+
+/* ======================================
+   TICKETS SECTION
+====================================== */
+
+.tickets-section{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+}
+
+.tickets-section h2{
+
+    color:#1E3A8A;
+
+    margin-bottom:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+/* ======================================
+   TABLE
+====================================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#3568F3;
+
+}
+
+thead th{
+
+    color:white;
+
+    padding:18px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+tbody td{
+
+    padding:18px;
+
+    border-bottom:1px solid #EEF2F7;
+
+    color:#444;
+
+    font-size:15px;
+
+}
+
+tbody tr{
+
+    transition:.25s;
+
+}
+
+tbody tr:hover{
+
+    background:#F7FAFF;
+
+}
+
+/* ======================================
+   PRIORITY BADGES
+====================================== */
+
+.priority{
+
+    display:inline-block;
+
+    padding:7px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.priority.high{
+
+    background:#FFE7E7;
+
+    color:#D32F2F;
+
+}
+
+.priority.medium{
+
+    background:#FFF4D6;
+
+    color:#F57C00;
+
+}
+
+.priority.low{
+
+    background:#E7F8EC;
+
+    color:#2E7D32;
+
+}
+
+/* ======================================
+   STATUS BADGES
+====================================== */
+
+.status{
+
+    display:inline-block;
+
+    padding:7px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.status.open{
+
+    background:#E3F2FD;
+
+    color:#1976D2;
+
+}
+
+.status.pending{
+
+    background:#FFF8E1;
+
+    color:#F9A825;
+
+}
+
+.status.in-progress{
+
+    background:#EDE7F6;
+
+    color:#673AB7;
+
+}
+
+.status.resolved{
+
+    background:#E8F5E9;
+
+    color:#2E7D32;
+
+}
+
+.status.closed{
+
+    background:#ECEFF1;
+
+    color:#455A64;
+
+}
+
+/* ======================================
+   VIEW BUTTON
+====================================== */
+
+.view-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#3568F3;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.view-btn:hover{
+
+    background:#234FC9;
+
+    transform:scale(1.08);
+
+}
+
+/* ======================================
+   EMPTY STATE
+====================================== */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:50px 20px;
+
+}
+
+.empty-state i{
+
+    font-size:55px;
+
+    color:#3568F3;
+
+    margin-bottom:15px;
+
+}
+
+.empty-state h3{
+
+    color:#1E3A8A;
+
+    margin-bottom:10px;
+
+    font-size:24px;
+
+}
+
+.empty-state p{
+
+    color:#6B7280;
+
+    font-size:15px;
+
+}
+
+/* ======================================
+   TABLE RESPONSIVE
+====================================== */
+
+@media(max-width:900px){
+
+    .tickets-section{
+
+        overflow-x:auto;
+
+    }
+
+    table{
+
+        min-width:700px;
+
+    }
+
+}
+/* ======================================================
+   PART 3 - TICKET DETAILS MODAL
+====================================================== */
+
+/* ======================================
+   MODAL OVERLAY
+====================================== */
+
+.ticket-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(15,23,42,.55);
+
+    backdrop-filter:blur(6px);
+
+    z-index:999;
+
+    animation:fadeIn .25s ease;
+
+}
+
+/* ======================================
+   MODAL CARD
+====================================== */
+
+.ticket-card{
+
+    width:700px;
+
+    max-width:92%;
+
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    background:#FFFFFF;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+    animation:popup .3s ease;
+
+}
+
+/* ======================================
+   MODAL HEADER
+====================================== */
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.modal-header h2{
+
+    color:#1E3A8A;
+
+    font-size:28px;
+
+}
+
+.close-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#EEF4FF;
+
+    color:#1E3A8A;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.close-btn:hover{
+
+    background:#DCE8FF;
+
+    transform:rotate(90deg);
+
+}
+
+/* ======================================
+   TICKET DETAILS
+====================================== */
+
+.ticket-details{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.ticket-details p{
+
+    margin:0;
+
+    font-size:15px;
+
+    color:#444;
+
+    line-height:1.6;
+
+}
+
+.ticket-details strong{
+
+    color:#1E3A8A;
+
+}
+
+.ticket-details label{
+
+    font-weight:600;
+
+    color:#374151;
+
+    margin-top:5px;
+
+}
+
+.ticket-details textarea{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #D1D5DB;
+
+    border-radius:12px;
+
+    background:#F9FAFB;
+
+    resize:none;
+
+    font-size:15px;
+
+    color:#444;
+
+    line-height:1.6;
+
+}
+
+.ticket-details textarea:focus{
+
+    outline:none;
+
+}
+
+/* ======================================
+   CUSTOM SCROLLBAR
+====================================== */
+
+.ticket-card::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.ticket-card::-webkit-scrollbar-thumb{
+
+    background:#C7D5FF;
+
+    border-radius:20px;
+
+}
+
+.ticket-card::-webkit-scrollbar-thumb:hover{
+
+    background:#9CB5FF;
+
+}
+
+/* ======================================
+   ANIMATIONS
+====================================== */
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px) scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+
+@media(max-width:768px){
+
+    .page{
+
+        padding:20px;
+
+    }
+
+    .header h1{
+
+        font-size:30px;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .ticket-card{
+
+        width:95%;
+
+        padding:20px;
+
+    }
+
+    .modal-header h2{
+
+        font-size:22px;
+
+    }
+
+}
