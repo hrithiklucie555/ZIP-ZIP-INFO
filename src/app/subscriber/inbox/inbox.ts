@@ -18,10 +18,35 @@ import { NewsletterService } from '../../services/newsletter.service';
 })
 export class Inbox implements OnInit {
 
+  // ==========================
+  // Newsletter Data
+  // ==========================
+
   newsletters: Newsletter[] = [];
+
   filteredNewsletters: Newsletter[] = [];
 
+  // ==========================
+  // Search & Filter
+  // ==========================
+
   search = '';
+
+  categories: string[] = [];
+
+  selectedCategory = '';
+
+  // ==========================
+  // Dashboard Statistics
+  // ==========================
+
+  totalNewsletters = 0;
+
+  totalCategories = 0;
+
+  readCount = 0;
+
+  unreadCount = 0;
 
   constructor(
     private newsletterService: NewsletterService,
@@ -29,11 +54,19 @@ export class Inbox implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
+  // ==========================
+  // On Init
+  // ==========================
+
   ngOnInit(): void {
 
     this.loadNewsletters();
 
   }
+
+  // ==========================
+  // Load Newsletters
+  // ==========================
 
   loadNewsletters(): void {
 
@@ -45,13 +78,34 @@ export class Inbox implements OnInit {
 
         this.filteredNewsletters = data;
 
+        // Dashboard Cards
+
+        this.totalNewsletters = data.length;
+
+        this.categories = [
+          ...new Set(
+            data.map(newsletter => newsletter.category)
+          )
+        ];
+
+        this.totalCategories = this.categories.length;
+
+        // Temporary statistics
+
+        this.readCount = 0;
+
+        this.unreadCount = data.length;
+
         this.cdr.detectChanges();
 
       },
 
       error: (error) => {
 
-        console.error('Failed to load newsletters', error);
+        console.error(
+          'Failed to load newsletters',
+          error
+        );
 
       }
 
@@ -59,23 +113,55 @@ export class Inbox implements OnInit {
 
   }
 
+  // ==========================
+  // Search & Category Filter
+  // ==========================
+
   filterNewsletters(): void {
 
     const value = this.search.trim().toLowerCase();
 
-    this.filteredNewsletters = this.newsletters.filter(newsletter =>
+    this.filteredNewsletters = this.newsletters.filter(newsletter => {
 
-      newsletter.title.toLowerCase().includes(value) ||
+      const matchesSearch =
 
-      newsletter.category.toLowerCase().includes(value)
+        newsletter.title
+          .toLowerCase()
+          .includes(value)
 
-    );
+        ||
+
+        newsletter.category
+          .toLowerCase()
+          .includes(value);
+
+      const matchesCategory =
+
+        this.selectedCategory === ''
+
+        ||
+
+        newsletter.category === this.selectedCategory;
+
+      return matchesSearch && matchesCategory;
+
+    });
 
   }
 
+  // ==========================
+  // Open Newsletter
+  // ==========================
+
   openNewsletter(id: number): void {
 
-    this.router.navigate(['/newsletter', id]);
+    this.router.navigate([
+
+      '/newsletter',
+
+      id
+
+    ]);
 
   }
 

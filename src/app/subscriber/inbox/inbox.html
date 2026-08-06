@@ -1,36 +1,157 @@
 <div class="page">
 
-    <!-- Header -->
+    <!-- ===========================
+         HEADER
+    ============================ -->
 
-    <div class="top">
+    <div class="header">
 
         <div>
 
-            <h1>📥 Newsletter Inbox</h1>
+            <h1>
+
+                <i class="fa-solid fa-envelope-open-text"></i>
+
+                Newsletter Inbox
+
+            </h1>
 
             <p>
 
-                Browse the latest newsletters published by ZIP ZIP INFO.
+                Browse, search and read the latest newsletters from ZIP ZIP INFO.
 
             </p>
 
         </div>
 
-        <input
-            type="text"
-            placeholder="🔍 Search newsletters..."
-            [(ngModel)]="search"
-            (input)="filterNewsletters()">
+    </div>
+
+    <!-- ===========================
+         DASHBOARD CARDS
+    ============================ -->
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-newspaper"></i>
+
+            </div>
+
+            <div class="details">
+
+                <h3>{{ totalNewsletters }}</h3>
+
+                <p>Total Newsletters</p>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-envelope"></i>
+
+            </div>
+
+            <div class="details">
+
+                <h3>{{ unreadCount }}</h3>
+
+                <p>Unread</p>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-book-open"></i>
+
+            </div>
+
+            <div class="details">
+
+                <h3>{{ readCount }}</h3>
+
+                <p>Read</p>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+            </div>
+
+            <div class="details">
+
+                <h3>{{ totalCategories }}</h3>
+
+                <p>Categories</p>
+
+            </div>
+
+        </div>
+
+    </div>
+        <!-- ===========================
+         SEARCH & FILTER
+    ============================ -->
+
+    <div class="toolbar">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                placeholder="Search newsletters..."
+                [(ngModel)]="search"
+                (input)="filterNewsletters()">
+
+        </div>
+
+        <select
+            [(ngModel)]="selectedCategory"
+            (change)="filterNewsletters()">
+
+            <option value="">All Categories</option>
+
+            <option
+                *ngFor="let category of categories"
+                [value]="category">
+
+                {{ category }}
+
+            </option>
+
+        </select>
 
     </div>
 
-    <!-- Newsletter Cards -->
+    <!-- ===========================
+         NEWSLETTER GRID
+    ============================ -->
 
     <div class="newsletter-grid">
 
         <div
             class="newsletter-card"
             *ngFor="let newsletter of filteredNewsletters">
+
+            <!-- Card Header -->
 
             <div class="card-header">
 
@@ -48,39 +169,64 @@
 
             </div>
 
+            <!-- Published Date -->
+
             <p class="date">
 
-                📅 Published:
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Published:
+
                 {{ newsletter.publishedAt | date:'dd MMM yyyy' }}
 
             </p>
 
+            <!-- Newsletter Preview -->
+
             <p class="preview">
 
-                {{ newsletter.content | slice:0:120 }}
+                {{ newsletter.content | slice:0:180 }}
 
-                ...
+                <span *ngIf="newsletter.content.length > 180">...</span>
 
             </p>
 
-            <button
-                (click)="openNewsletter(newsletter.id)">
+            <!-- Read Button -->
 
-                📖 Read Newsletter
+            <div class="card-footer">
 
-            </button>
+                <button
+                    class="read-btn"
+                    (click)="openNewsletter(newsletter.id)">
+
+                    <i class="fa-solid fa-book-open-reader"></i>
+
+                    Read Newsletter
+
+                </button>
+
+            </div>
 
         </div>
 
     </div>
-
-    <!-- Empty State -->
+        <!-- ===========================
+         EMPTY STATE
+    ============================ -->
 
     <div
-        class="empty"
+        class="empty-state"
         *ngIf="filteredNewsletters.length === 0">
 
-        📭 No newsletters found.
+        <i class="fa-solid fa-inbox"></i>
+
+        <h3>No Newsletters Found</h3>
+
+        <p>
+
+            We couldn't find any newsletters matching your search or category.
+
+        </p>
 
     </div>
 
