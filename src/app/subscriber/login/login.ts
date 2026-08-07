@@ -49,7 +49,7 @@ export class Login {
           JSON.stringify(response.subscriber)
         );
 
-        this.router.navigate(['/subscriber-home']);
+        this.router.navigate(['/subscriber/home']);
 
       },
 
@@ -67,7 +67,7 @@ export class Login {
 
   goToRegister(): void {
 
-    this.router.navigate(['/subscriber-register']);
+    this.router.navigate(['/subscriber/register']);
 
   }
 

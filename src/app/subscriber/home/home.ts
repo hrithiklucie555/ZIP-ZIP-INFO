@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class Home implements OnInit {
 
-  constructor(private router: Router,
-    
+  constructor(
+    private router: Router
   ) {}
 
   // ==========================
@@ -51,11 +51,7 @@ export class Home implements OnInit {
 
       this.subscriberEmail = user.email;
 
-
-    }
-    else{
-
-      // Temporary values
+    } else {
 
       this.subscriberName = 'Subscriber';
 
@@ -77,7 +73,10 @@ export class Home implements OnInit {
 
   openReadNewsletters(): void {
 
-    this.router.navigate(['/subscriber/read-newsletter']);
+    // Redirect to Inbox where the subscriber
+    // can choose which newsletter to read.
+
+    this.router.navigate(['/subscriber/inbox']);
 
   }
 
@@ -86,8 +85,6 @@ export class Home implements OnInit {
     this.router.navigate(['/subscriber/help-support']);
 
   }
-
-  // Future Features
 
   openProfile(): void {
 
@@ -115,7 +112,7 @@ export class Home implements OnInit {
 
     localStorage.removeItem('subscriber');
 
-    this.router.navigate(['/subscriber/login']);
+    this.router.navigate(['/subscriber-login']);
 
   }
 

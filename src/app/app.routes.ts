@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { PortalSelection } from './shared/portal-selection/portal-selection';
 
+// Admin
 import { Login } from './admin/login/login';
 import { Dashboard } from './admin/dashboard/dashboard';
 import { Newsletters } from './admin/newsletters/newsletters';
@@ -9,33 +10,43 @@ import { ManageNewsletters } from './admin/manage-newsletters/manage-newsletters
 import { Subscribers } from './admin/subscribers/subscribers';
 import { Reports } from './admin/reports/reports';
 import { Settings } from './admin/settings/settings';
+import { HelpSupport } from './admin/help-support/help-support';
 
+// Subscriber
 import { Register } from './subscriber/register/register';
 import { Login as SubscriberLogin } from './subscriber/login/login';
 import { Home } from './subscriber/home/home';
 import { Inbox } from './subscriber/inbox/inbox';
 import { ReadNewsletter } from './subscriber/read-newsletter/read-newsletter';
-
-import { Layout } from './layout/layout';
-import { HelpSupport } from './admin/help-support/help-support';
 import { HelpSupport as SubscriberHelpSupport } from './subscriber/help-support/help-support';
+
+// Layouts
+import { Layout } from './layout/layout';
+import { Layout as SubscriberLayout } from './subscriber/layout/layout';
 
 export const routes: Routes = [
 
+  // ==========================
+  // Portal Selection
+  // ==========================
 
   {
     path: '',
     component: PortalSelection
   },
 
-
+  // ==========================
+  // Admin Login
+  // ==========================
 
   {
     path: 'login',
     component: Login
   },
 
-
+  // ==========================
+  // Admin Layout
+  // ==========================
 
   {
     path: '',
@@ -70,12 +81,20 @@ export const routes: Routes = [
       {
         path: 'settings',
         component: Settings
+      },
+
+      {
+        path: 'help-support',
+        component: HelpSupport
       }
 
     ]
+
   },
 
-
+  // ==========================
+  // Subscriber Authentication
+  // ==========================
 
   {
     path: 'subscriber-register',
@@ -87,31 +106,46 @@ export const routes: Routes = [
     component: SubscriberLogin
   },
 
+  // ==========================
+  // Subscriber Layout
+  // =====================
   {
-    path: 'subscriber-home',
-    component: Home
-  },
+  path: 'subscriber',
+  component: SubscriberLayout,
+  children: [
 
-  {
-    path: 'subscriber-inbox',
-    component: Inbox
-  },
+    {
+      path: 'home',
+      component: Home
+    },
 
-  {
-    path: 'newsletter/:id',
-    component: ReadNewsletter
-  },
+    {
+      path: 'inbox',
+      component: Inbox
+    },
 
-  {
-    path: 'help-support',
-    component: HelpSupport
-   },
+    {
+      path: 'help-support',
+      component: SubscriberHelpSupport
+    },
 
-   {
-    path: 'subscriber/help-support',
-    component: SubscriberHelpSupport
-   },
+    {
+      path: 'newsletter/:id',
+      component: ReadNewsletter
+    },
 
+    {
+      path: '',
+      redirectTo: 'home',
+      pathMatch: 'full'
+    }
+
+  ]
+},
+
+  // ==========================
+  // Wildcard
+  // ==========================
 
   {
     path: '**',

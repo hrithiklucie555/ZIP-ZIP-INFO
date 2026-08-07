@@ -1,0 +1,291 @@
+/* ===================================================
+   SUBSCRIBER SIDEBAR
+=================================================== */
+
+.sidebar{
+
+    width:270px;
+
+    height:100%;
+
+    background:#ffffff;
+
+    position:auto;
+
+    left:0;
+
+    top:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    padding:25px 20px;
+
+    box-shadow:4px 0 20px rgba(0,0,0,.08);
+
+    z-index:1000;
+
+}
+
+/* =====================================
+   LOGO
+===================================== */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:40px;
+
+}
+
+.logo-icon{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:14px;
+
+    background:#EDF3FF;
+
+    color:#3568F3;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+}
+
+.logo h2{
+
+    color:#1E3A8A;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+/* =====================================
+   NAVIGATION
+===================================== */
+
+.sidebar ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+    flex:1;
+
+}
+
+.sidebar ul li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:14px 18px;
+
+    margin-bottom:10px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    color:#4B5563;
+
+    font-weight:500;
+
+}
+
+.sidebar ul li i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+.sidebar ul li:hover{
+
+    background:#EEF4FF;
+
+    color:#3568F3;
+
+    transform:translateX(5px);
+
+}
+
+.sidebar ul li.active{
+
+    background:#3568F3;
+
+    color:white;
+
+    box-shadow:0 8px 18px rgba(53,104,243,.30);
+
+}
+
+/* =====================================
+   BOTTOM PROFILE
+===================================== */
+
+.sidebar-bottom{
+
+    border-top:1px solid #E5E7EB;
+
+    padding-top:20px;
+
+}
+
+.subscriber-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:18px;
+
+}
+
+.profile-icon{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    background:#EDF3FF;
+
+    color:#3568F3;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:20px;
+
+}
+
+.subscriber-profile h4{
+
+    margin:0;
+
+    color:#1E3A8A;
+
+    font-size:16px;
+
+}
+
+.subscriber-profile small{
+
+    color:#6B7280;
+
+}
+
+/* =====================================
+   LOGOUT BUTTON
+===================================== */
+
+.logout-btn{
+
+    width:100%;
+
+    background:#EF4444;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#DC2626;
+
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:900px){
+
+    .sidebar{
+
+        width:85px;
+
+        padding:20px 12px;
+
+    }
+
+    .logo h2,
+
+    .sidebar ul li span,
+
+    .subscriber-profile div{
+
+        display:none;
+
+    }
+
+    .sidebar ul li{
+
+        justify-content:center;
+
+    }
+
+    .logo{
+
+        justify-content:center;
+
+    }
+
+}

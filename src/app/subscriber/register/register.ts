@@ -85,7 +85,7 @@ export class Register {
 
         setTimeout(() => {
 
-          this.router.navigate(['/subscriber-login']);
+          this.router.navigate(['/subscriber/login']);
 
         }, 1500);
 
@@ -107,7 +107,7 @@ export class Register {
 
   goToLogin(): void {
 
-    this.router.navigate(['/subscriber-login']);
+    this.router.navigate(['/subscriber/login']);
 
   }
 

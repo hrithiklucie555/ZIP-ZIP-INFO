@@ -31,7 +31,7 @@ export class ReadNewsletter implements OnInit {
 
     if (isNaN(id)) {
 
-      this.router.navigate(['/subscriber-inbox']);
+      this.router.navigate(['/subscriber/inbox']);
 
       return;
 
@@ -66,7 +66,7 @@ export class ReadNewsletter implements OnInit {
 
   back(): void {
 
-    this.router.navigate(['/subscriber-inbox']);
+    this.router.navigate(['/subscriber/inbox']);
 
   }
 
