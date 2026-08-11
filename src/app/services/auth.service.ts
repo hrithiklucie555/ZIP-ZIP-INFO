@@ -34,5 +34,24 @@ export class AuthService {
     return localStorage.getItem('loggedIn') === 'true';
 
   }
+  setCurrentUser(user: any): void {
+
+  localStorage.setItem(
+
+    'currentUser',
+
+    JSON.stringify(user)
+
+  );
+
+}
+
+getCurrentUser(): any {
+
+  const user = localStorage.getItem('currentUser');
+
+  return user ? JSON.parse(user) : null;
+
+}
 
 }

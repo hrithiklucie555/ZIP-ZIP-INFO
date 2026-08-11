@@ -1,240 +1,173 @@
-<div class="dashboard">
+<div class="home-container">
 
-    <!-- ===========================
-         WELCOME SECTION
-    ============================ -->
+    <!-- Welcome Section -->
 
     <div class="welcome-card">
 
-        <div class="welcome-left">
+        <h1>
 
-            <h1>
-                <i class="fa-solid fa-envelope-open-text"></i>
-                ZIP ZIP INFO
-            </h1>
+            👋 Welcome Back, {{ subscriberName }}
 
-            <h2>
-                Hey, {{ subscriberName }} 👋
-            </h2>
+        </h1>
 
-            <p>{{ subscriberEmail }}</p>
+        <p>
 
-        </div>
+            Stay informed with the latest newsletters from
+            <strong>ZIP ZIP INFO</strong>.
+
+        </p>
+
+        <p class="date">
+
+            📅 {{ currentDate | date:'fullDate' }}
+
+        </p>
 
     </div>
 
-    <!-- ===========================
-         QUICK STATS
-    ============================ -->
+    <!-- Latest Newsletter -->
+
+    <div class="latest-card">
+
+        <div class="card-header">
+
+            <h2>
+
+                📬 Latest Newsletter
+
+            </h2>
+
+        </div>
+
+        <h3>
+
+            {{ latestNewsletter.subject }}
+
+        </h3>
+
+        <p class="category">
+
+            {{ latestNewsletter.category }}
+
+        </p>
+
+        <p class="content">
+
+            {{ latestNewsletter.content }}
+
+        </p>
+
+        <button
+
+            class="read-btn"
+
+            (click)="readLatestNewsletter()">
+
+            Read Now →
+
+        </button>
+
+    </div>
+
+    <div class="actions">
+
+    <button
+        class="inbox-btn"
+        (click)="goToInbox()">
+
+        📬 View All Newsletters
+
+    </button>
+
+</div>
+
+    <!-- Quick Overview -->
 
     <div class="stats-grid">
 
         <div class="stat-card">
 
-            <i class="fa-solid fa-envelope"></i>
+            <h2>
 
-            <h2>{{ unreadCount }}</h2>
+                📬
 
-            <p>Unread</p>
+            </h2>
 
-        </div>
+            <h3>
 
-        <div class="stat-card">
+                {{ totalNewsletters }}
 
-            <i class="fa-solid fa-book-open"></i>
+            </h3>
 
-            <h2>{{ readCount }}</h2>
+            <p>
 
-            <p>Read</p>
+                Total Newsletters
 
-        </div>
-
-        <div class="stat-card">
-
-            <i class="fa-solid fa-headset"></i>
-
-            <h2>{{ ticketCount }}</h2>
-
-            <p>Support Tickets</p>
+            </p>
 
         </div>
 
         <div class="stat-card">
 
-            <i class="fa-solid fa-bell"></i>
+            <h2>
 
-            <h2>{{ notificationCount }}</h2>
+                📂
 
-            <p>Notifications</p>
+            </h2>
+
+            <h3>
+
+                {{ totalCategories }}
+
+            </h3>
+
+            <p>
+
+                Categories
+
+            </p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>
+
+                🆕
+
+            </h2>
+
+            <h3>
+
+                {{ newThisWeek }}
+
+            </h3>
+
+            <p>
+
+                New This Week
+
+            </p>
 
         </div>
 
     </div>
 
-    <!-- ===========================
-         FEATURE CARDS
-    ============================ -->
+    <!-- Quote -->
 
-    <div class="features-grid">
+    <div class="quote-card">
 
-        <!-- Inbox -->
+        <h2>
 
-        <div class="feature-card">
+            💡 Quote of the Day
 
-            <i class="fa-solid fa-envelope-open-text feature-icon"></i>
+        </h2>
 
-            <h3>Inbox</h3>
+        <blockquote>
 
-            <p>
+            "Knowledge grows when it is shared."
 
-                View all newsletters sent to your account.
-
-            </p>
-
-            <button
-                class="primary-btn"
-                (click)="openInbox()">
-
-                Open Inbox
-
-            </button>
-
-        </div>
-
-        <!-- Latest Newsletters -->
-
-        <div class="feature-card">
-
-            <i class="fa-solid fa-newspaper feature-icon"></i>
-
-            <h3>Latest Newsletters</h3>
-
-            <p>
-
-                Read the latest published newsletters.
-
-            </p>
-
-            <button
-                class="primary-btn"
-                (click)="openReadNewsletters()">
-
-                Read Now
-
-            </button>
-
-        </div>
-
-        <!-- Help & Support -->
-
-        <div class="feature-card">
-
-            <i class="fa-solid fa-headset feature-icon"></i>
-
-            <h3>Help & Support</h3>
-
-            <p>
-
-                Raise support tickets and track your requests.
-
-            </p>
-
-            <button
-                class="primary-btn"
-                (click)="openSupport()">
-
-                Open Support
-
-            </button>
-
-        </div>
-
-        <!-- Profile -->
-
-        <div class="feature-card">
-
-            <i class="fa-solid fa-user feature-icon"></i>
-
-            <h3>My Profile</h3>
-
-            <p>
-
-                View and manage your account information.
-
-            </p>
-
-            <button
-                class="secondary-btn">
-
-                Coming Soon
-
-            </button>
-
-        </div>
-
-        <!-- Notifications -->
-
-        <div class="feature-card">
-
-            <i class="fa-solid fa-bell feature-icon"></i>
-
-            <h3>Notifications</h3>
-
-            <p>
-
-                Check important updates and alerts.
-
-            </p>
-
-            <button
-                class="secondary-btn">
-
-                Coming Soon
-
-            </button>
-
-        </div>
-
-        <!-- Activity -->
-
-        <div class="feature-card">
-
-            <i class="fa-solid fa-chart-line feature-icon"></i>
-
-            <h3>My Activity</h3>
-
-            <p>
-
-                View your newsletter and support activity.
-
-            </p>
-
-            <button
-                class="secondary-btn">
-
-                Coming Soon
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <!-- ===========================
-         LOGOUT
-    ============================ -->
-
-    <div class="logout-container">
-
-        <button
-            class="logout-btn"
-            (click)="logout()">
-
-            <i class="fa-solid fa-right-from-bracket"></i>
-
-            Logout
-
-        </button>
+        </blockquote>
 
     </div>
 

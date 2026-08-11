@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { SupportService } from '../../services/support.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-help-support',
@@ -15,10 +16,13 @@ export class HelpSupport implements OnInit {
 
   constructor(
     private supportService: SupportService,
+    private authService: AuthService,
     
       
     private cdr: ChangeDetectorRef
   ) {}
+
+
 
   // ===============================
   // Form
@@ -56,15 +60,17 @@ export class HelpSupport implements OnInit {
 
   ngOnInit(): void {
 
-    // Temporary values
+    const user = this.authService.getCurrentUser();
 
-    this.ticket.subscriber = 'Hrithik';
+  if (user) {
 
-    this.ticket.email = 'hrithik@gmail.com';
+      this.ticket.subscriber = user.name;
 
-    this.loadTickets();
+      this.ticket.email = user.email;
 
-  }
+    }
+
+}
 
   // ===============================
   // Load Tickets

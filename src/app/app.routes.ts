@@ -15,7 +15,7 @@ import { HelpSupport } from './admin/help-support/help-support';
 // Subscriber
 import { Register } from './subscriber/register/register';
 import { Login as SubscriberLogin } from './subscriber/login/login';
-import { Home } from './subscriber/home/home';
+import { SubscriberHome} from './subscriber/home/home';
 import { Inbox } from './subscriber/inbox/inbox';
 import { ReadNewsletter } from './subscriber/read-newsletter/read-newsletter';
 import { HelpSupport as SubscriberHelpSupport } from './subscriber/help-support/help-support';
@@ -116,7 +116,7 @@ export const routes: Routes = [
 
     {
       path: 'home',
-      component: Home
+      component: SubscriberHome
     },
 
     {

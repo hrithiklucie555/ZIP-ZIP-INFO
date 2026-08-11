@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-subscriber-login',
@@ -21,7 +22,8 @@ export class Login {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService
   ) {}
 
   login(): void {
@@ -44,10 +46,9 @@ export class Login {
 
       next: (response) => {
 
-        localStorage.setItem(
-          "subscriber",
-          JSON.stringify(response.subscriber)
-        );
+        this.authService.setCurrentUser(
+  response.subscriber
+);
 
         this.router.navigate(['/subscriber/home']);
 

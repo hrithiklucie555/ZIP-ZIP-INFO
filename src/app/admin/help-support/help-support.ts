@@ -91,31 +91,35 @@ export class HelpSupport implements OnInit {
 
   updateStatistics(): void {
 
-    this.stats[0].value = this.tickets.filter(
+  this.stats[0].value = this.tickets.filter(
 
-      ticket => ticket.status === 'Open'
+    ticket =>
+      (ticket.status || 'Open').toLowerCase() === 'open'
 
-    ).length;
+  ).length;
 
-    this.stats[1].value = this.tickets.filter(
+  this.stats[1].value = this.tickets.filter(
 
-      ticket => ticket.status === 'Pending'
+    ticket =>
+      (ticket.status || '').toLowerCase() === 'pending'
 
-    ).length;
+  ).length;
 
-    this.stats[2].value = this.tickets.filter(
+  this.stats[2].value = this.tickets.filter(
 
-      ticket => ticket.status === 'Resolved'
+    ticket =>
+      (ticket.status || '').toLowerCase() === 'resolved'
 
-    ).length;
+  ).length;
 
-    this.stats[3].value = this.tickets.filter(
+  this.stats[3].value = this.tickets.filter(
 
-      ticket => ticket.priority === 'High'
+    ticket =>
+      (ticket.priority || '').toLowerCase() === 'high'
 
-    ).length;
+  ).length;
 
-  }
+}
 
   viewTicket(ticket: any): void {
 

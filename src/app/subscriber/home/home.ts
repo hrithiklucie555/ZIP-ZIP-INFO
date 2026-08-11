@@ -1,119 +1,213 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule,DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
+
+interface Newsletter {
+
+  id: number;
+
+  subject: string;
+
+  category: string;
+
+  content: string;
+
+  author: string;
+
+  status: string;
+
+  createdAt: string;
+
+}
 
 @Component({
-  selector: 'app-home',
+
+  selector: 'app-subscriber-home',
+
   standalone: true,
-  imports: [CommonModule],
+
+  imports: [
+
+    CommonModule,
+
+    DatePipe
+
+  ],
+
   templateUrl: './home.html',
+
   styleUrl: './home.css'
+
 })
-export class Home implements OnInit {
+
+export class SubscriberHome implements OnInit {
+
+  // ==========================
+  // Subscriber
+  // ==========================
+
+  subscriberName = "";
+
+  currentDate = new Date();
+
+  // ==========================
+  // Latest Newsletter
+  // ==========================
+
+  latestNewsletter: Newsletter = {
+
+    id: 0,
+
+    subject: "No Newsletters Available",
+
+    category: "-",
+
+    content: "No newsletters have been published yet.",
+
+    author: "",
+
+    status: "",
+
+    createdAt: ""
+
+  };
+
+  // ==========================
+  // Statistics
+  // ==========================
+
+  totalNewsletters = 0;
+
+  totalCategories = 0;
+
+  newThisWeek = 0;
 
   constructor(
-    private router: Router
+
+    private http: HttpClient,
+
+    private router: Router,
+
+    private cdr: ChangeDetectorRef,
+
+    private authService: AuthService
+
   ) {}
-
-  // ==========================
-  // Subscriber Information
-  // ==========================
-
-  subscriberName = '';
-
-  subscriberEmail = '';
-
-  // ==========================
-  // Dashboard Statistics
-  // ==========================
-
-  unreadCount = 5;
-
-  readCount = 12;
-
-  ticketCount = 2;
-
-  notificationCount = 3;
-
-  // ==========================
-  // On Init
-  // ==========================
 
   ngOnInit(): void {
 
-    const subscriber = localStorage.getItem('subscriber');
+  const user = this.authService.getCurrentUser();
 
-    if (subscriber) {
+  if (user) {
+    this.subscriberName = user.name;
+  }
 
-      const user = JSON.parse(subscriber);
+  this.loadHomeData();
 
-      this.subscriberName = user.name;
+}
 
-      this.subscriberEmail = user.email;
+  // ==========================
+  // Load Home Data
+  // ==========================
 
-    } else {
+  loadHomeData(): void {
 
-      this.subscriberName = 'Subscriber';
+    this.http.get<Newsletter[]>(
 
-      this.subscriberEmail = 'subscriber@example.com';
+      "http://localhost:3000/newsletters"
+
+    ).subscribe({
+
+      next: (data) => {
+
+        this.totalNewsletters = data.length;
+
+        this.totalCategories =
+
+          new Set(
+
+            data.map(newsletter => newsletter.category)
+
+          ).size;
+
+        // Latest Newsletter
+
+        if (data.length > 0) {
+
+          this.latestNewsletter =
+
+            data[data.length - 1];
+
+        }
+
+        // Newsletters Published This Week
+
+        const today = new Date();
+
+        const oneWeekAgo = new Date();
+
+        oneWeekAgo.setDate(
+
+          today.getDate() - 7
+
+        );
+
+        this.newThisWeek =
+
+          data.filter(newsletter =>
+
+            new Date(newsletter.createdAt) >= oneWeekAgo
+
+          ).length;
+
+          this.cdr.detectChanges();
+
+      },
+
+      error: (error) => {
+
+        console.error(
+
+          "Failed to load home data",
+
+          error
+
+        );
+
+      }
+
+    });
+
+  }
+
+  // ==========================
+  // Read Latest Newsletter
+  // ==========================
+
+  readLatestNewsletter(): void {
+
+    if (this.latestNewsletter.id !== 0) {
+
+      this.router.navigate([
+
+        "/subscriber/newsletter",
+
+        this.latestNewsletter.id
+
+      ]);
 
     }
 
   }
 
-  // ==========================
-  // Navigation
-  // ==========================
+  goToInbox(): void {
 
-  openInbox(): void {
+  this.router.navigate([
+    '/subscriber/inbox'
+  ]);
 
-    this.router.navigate(['/subscriber/inbox']);
-
-  }
-
-  openReadNewsletters(): void {
-
-    // Redirect to Inbox where the subscriber
-    // can choose which newsletter to read.
-
-    this.router.navigate(['/subscriber/inbox']);
-
-  }
-
-  openSupport(): void {
-
-    this.router.navigate(['/subscriber/help-support']);
-
-  }
-
-  openProfile(): void {
-
-    console.log('Profile Coming Soon');
-
-  }
-
-  openNotifications(): void {
-
-    console.log('Notifications Coming Soon');
-
-  }
-
-  openActivity(): void {
-
-    console.log('Activity Coming Soon');
-
-  }
-
-  // ==========================
-  // Logout
-  // ==========================
-
-  logout(): void {
-
-    localStorage.removeItem('subscriber');
-
-    this.router.navigate(['/subscriber-login']);
-
-  }
+}
 
 }

@@ -17,6 +17,7 @@
 
     </div>
 
+
     <!-- ===========================
          SUCCESS MESSAGE
     =========================== -->
@@ -30,6 +31,7 @@
         {{ message }}
 
     </div>
+
 
     <!-- ===========================
          CREATE TICKET
@@ -45,11 +47,16 @@
 
         </h2>
 
+
         <div class="form-grid">
+
+            <!-- Subscriber Name -->
 
             <div>
 
-                <label>Subscriber Name</label>
+                <label>
+                    Subscriber Name
+                </label>
 
                 <input
                     type="text"
@@ -58,9 +65,14 @@
 
             </div>
 
+
+            <!-- Email -->
+
             <div>
 
-                <label>Email Address</label>
+                <label>
+                    Email Address
+                </label>
 
                 <input
                     type="email"
@@ -69,31 +81,54 @@
 
             </div>
 
+
+            <!-- Category -->
+
             <div>
 
-                <label>Category</label>
+                <label>
+                    Category
+                </label>
 
-                <select [(ngModel)]="ticket.category">
+                <select
+                    [(ngModel)]="ticket.category">
 
-                    <option value="">Select Category</option>
+                    <option value="">
+                        Select Category
+                    </option>
 
-                    <option>Technical</option>
+                    <option>
+                        Technical
+                    </option>
 
-                    <option>Newsletter</option>
+                    <option>
+                        Newsletter
+                    </option>
 
-                    <option>Subscription</option>
+                    <option>
+                        Subscription
+                    </option>
 
-                    <option>Account</option>
+                    <option>
+                        Account
+                    </option>
 
-                    <option>Feedback</option>
+                    <option>
+                        Feedback
+                    </option>
 
                 </select>
 
             </div>
 
+
+            <!-- Subject -->
+
             <div>
 
-                <label>Subject</label>
+                <label>
+                    Subject
+                </label>
 
                 <input
                     type="text"
@@ -102,9 +137,14 @@
 
             </div>
 
+
+            <!-- Description -->
+
             <div class="full-width">
 
-                <label>Description</label>
+                <label>
+                    Description
+                </label>
 
                 <textarea
                     rows="6"
@@ -115,6 +155,9 @@
             </div>
 
         </div>
+
+
+        <!-- Submit -->
 
         <button
             class="submit-btn"
@@ -128,6 +171,8 @@
         </button>
 
     </div>
+
+
 
     <!-- ===========================
          MY TICKETS
@@ -143,73 +188,122 @@
 
         </h2>
 
+
         <table>
 
             <thead>
 
                 <tr>
 
-                    <th>Ticket ID</th>
+                    <th>
+                        Ticket ID
+                    </th>
 
-                    <th>Category</th>
+                    <th>
+                        Category
+                    </th>
 
-                    <th>Status</th>
+                    <th>
+                        Status
+                    </th>
 
-                    <th>Priority</th>
+                    <th>
+                        Priority
+                    </th>
 
-                    <th>Date</th>
+                    <th>
+                        Date
+                    </th>
 
-                    <th>Action</th>
+                    <th>
+                        Action
+                    </th>
 
                 </tr>
 
             </thead>
 
+
             <tbody>
 
-                <tr *ngFor="let ticket of tickets">
+                <!-- Ticket Rows -->
 
-                    <td>{{ ticket.ticketId }}</td>
+                <tr
+                    *ngFor="let ticket of tickets">
 
-                    <td>{{ ticket.category }}</td>
+                    <!-- Ticket ID -->
+
+                    <td>
+                        {{ ticket.ticketId || ticket.id }}
+                    </td>
+
+
+                    <!-- Category -->
+
+                    <td>
+                        {{ ticket.category || '-' }}
+                    </td>
+
+
+                    <!-- Status -->
 
                     <td>
 
                         <span
                             class="status"
-                            [ngClass]="ticket.status.toLowerCase().replace(' ','-')">
+                            [ngClass]="
+                                (ticket.status || 'Open')
+                                .toLowerCase()
+                                .replace(' ', '-')
+                            ">
 
-                            {{ ticket.status }}
+                            {{ ticket.status || 'Open' }}
 
                         </span>
 
                     </td>
+
+
+                    <!-- Priority -->
 
                     <td>
 
                         <span
                             class="priority"
-                            [ngClass]="ticket.priority.toLowerCase()">
+                            [ngClass]="
+                                (ticket.priority || 'Medium')
+                                .toLowerCase()
+                            ">
 
-                            {{ ticket.priority }}
+                            {{ ticket.priority || 'Medium' }}
 
                         </span>
 
                     </td>
 
+
+                    <!-- Date -->
+
                     <td>
 
-                        {{ ticket.createdAt | date:'dd MMM yyyy' }}
+                        {{ ticket.createdAt
+                           | date:'dd MMM yyyy' }}
 
                     </td>
+
+
+                    <!-- Action -->
 
                     <td>
 
                         <button
                             class="view-btn"
-                            (click)="viewTicket(ticket)">
+                            (click)="viewTicket(ticket)"
+                            title="View Ticket">
 
-                            <i class="fa-solid fa-eye"></i>
+                            <i
+                                class="fa-solid fa-eye">
+                            </i>
 
                         </button>
 
@@ -217,20 +311,26 @@
 
                 </tr>
 
-                <tr *ngIf="tickets.length === 0">
+
+                <!-- Empty State -->
+
+                <tr
+                    *ngIf="tickets.length === 0">
 
                     <td colspan="6">
 
                         <div class="empty-state">
 
-                            <i class="fa-solid fa-inbox"></i>
+                            <i
+                                class="fa-solid fa-inbox">
+                            </i>
 
-                            <h3>No Tickets Yet</h3>
+                            <h3>
+                                No Tickets Yet
+                            </h3>
 
                             <p>
-
                                 You haven't submitted any support requests.
-
                             </p>
 
                         </div>
@@ -247,6 +347,8 @@
 
 </div>
 
+
+
 <!-- ===========================
      VIEW TICKET
 =========================== -->
@@ -255,77 +357,111 @@
     class="ticket-modal"
     *ngIf="selectedTicket">
 
+
     <div class="ticket-card">
+
+
+        <!-- Modal Header -->
 
         <div class="modal-header">
 
             <h2>
 
-                {{ selectedTicket.ticketId }}
+                {{ selectedTicket.ticketId
+                   || selectedTicket.id }}
 
             </h2>
+
 
             <button
                 class="close-btn"
                 (click)="closeTicket()">
 
-                <i class="fa-solid fa-xmark"></i>
+                <i
+                    class="fa-solid fa-xmark">
+                </i>
 
             </button>
 
         </div>
 
+
+        <!-- Ticket Details -->
+
         <div class="ticket-details">
 
-            <p>
 
-                <strong>Category:</strong>
-
-                {{ selectedTicket.category }}
-
-            </p>
+            <!-- Category -->
 
             <p>
 
-                <strong>Subject:</strong>
+                <strong>
+                    Category:
+                </strong>
 
-                {{ selectedTicket.subject }}
+                {{ selectedTicket.category || '-' }}
 
             </p>
+
+
+            <!-- Subject -->
 
             <p>
 
-                <strong>Status:</strong>
+                <strong>
+                    Subject:
+                </strong>
 
-                {{ selectedTicket.status }}
+                {{ selectedTicket.subject || '-' }}
 
             </p>
+
+
+            <!-- Status -->
 
             <p>
 
-                <strong>Priority:</strong>
+                <strong>
+                    Status:
+                </strong>
 
-                {{ selectedTicket.priority }}
+                {{ selectedTicket.status || 'Open' }}
 
             </p>
 
-            <label>Description</label>
+
+            <!-- Priority -->
+
+            <p>
+
+                <strong>
+                    Priority:
+                </strong>
+
+                {{ selectedTicket.priority || 'Medium' }}
+
+            </p>
+
+
+            <!-- Description -->
+
+            <label>
+                Description
+            </label>
 
             <textarea
-                readonly>
+                readonly>{{ selectedTicket.description || 'No description provided.' }}</textarea>
 
-{{ selectedTicket.description }}
 
-            </textarea>
+            <!-- Support Reply -->
 
-            <label>Support Team Reply</label>
+            <label>
+                Support Team Reply
+            </label>
 
             <textarea
-                readonly>
+                readonly>{{ selectedTicket.reply || 'No reply yet.' }}</textarea>
 
-{{ selectedTicket.reply || 'No reply yet.' }}
-
-            </textarea>
 
         </div>
 
