@@ -12,14 +12,34 @@ export class SubscriberService {
 
   constructor(private http: HttpClient) {}
 
-  // Get all subscribers
+  // ==========================
+  // Get All Subscribers
+  // ==========================
+
   getSubscribers(): Observable<any[]> {
 
-    return this.http.get<any[]>(`${this.API}/subscribers`);
+    return this.http.get<any[]>(
+      `${this.API}/subscribers`
+    );
 
   }
 
-  // Register a new subscriber
+  // ==========================
+  // Search Subscribers
+  // ==========================
+
+  searchSubscribers(search: string): Observable<any[]> {
+
+    return this.http.get<any[]>(
+      `${this.API}/subscribers/search?q=${encodeURIComponent(search)}`
+    );
+
+  }
+
+  // ==========================
+  // Register New Subscriber
+  // ==========================
+
   registerSubscriber(subscriber: any): Observable<any> {
 
     return this.http.post(
@@ -29,7 +49,10 @@ export class SubscriberService {
 
   }
 
-  // Delete subscriber
+  // ==========================
+  // Delete Subscriber
+  // ==========================
+
   deleteSubscriber(id: number): Observable<any> {
 
     return this.http.delete(
@@ -38,8 +61,14 @@ export class SubscriberService {
 
   }
 
-  // Update subscriber
-  updateSubscriber(id: number, subscriber: any): Observable<any> {
+  // ==========================
+  // Update Subscriber
+  // ==========================
+
+  updateSubscriber(
+    id: number,
+    subscriber: any
+  ): Observable<any> {
 
     return this.http.put(
       `${this.API}/subscribers/${id}`,
@@ -47,13 +76,20 @@ export class SubscriberService {
     );
 
   }
-  importSubscribers(subscribers: any[]): Observable<any> {
 
-  return this.http.post<any>(
-    `${this.API}/subscribers/import`,
-    subscribers
-  );
+  // ==========================
+  // Import Subscribers
+  // ==========================
 
-}
+  importSubscribers(
+    subscribers: any[]
+  ): Observable<any> {
+
+    return this.http.post<any>(
+      `${this.API}/subscribers/import`,
+      subscribers
+    );
+
+  }
 
 }

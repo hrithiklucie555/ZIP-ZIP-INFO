@@ -33,26 +33,23 @@ export class Register {
     private cdr: ChangeDetectorRef
   ) {}
 
+  // ==========================
+  // Register Subscriber
+  // ==========================
+
   register(): void {
 
     if (
-
       !this.name.trim() ||
-
       !this.email.trim() ||
-
       !this.phone.trim() ||
-
       !this.password.trim() ||
-
       !this.confirmPassword.trim()
-
     ) {
 
       this.message = 'Please fill all fields.';
 
       return;
-
     }
 
     if (this.password !== this.confirmPassword) {
@@ -60,22 +57,26 @@ export class Register {
       this.message = 'Passwords do not match.';
 
       return;
-
     }
 
     this.http.post<any>(
       'http://localhost:3000/subscribers',
       {
-        name: this.name,
-        email: this.email,
-        phone: this.phone,
+        name: this.name.trim(),
+        email: this.email.trim(),
+        phone: this.phone.trim(),
         password: this.password
       }
     ).subscribe({
 
       next: (response) => {
 
-        this.message = response.message;
+        this.message =
+          response.message || 'Registration successful.';
+
+        this.cdr.detectChanges();
+
+        // Clear form
 
         this.name = '';
         this.email = '';
@@ -83,9 +84,13 @@ export class Register {
         this.password = '';
         this.confirmPassword = '';
 
+        // Go to login after successful registration
+
         setTimeout(() => {
 
-          this.router.navigate(['/subscriber/login']);
+          this.router.navigate([
+            '/subscriber-login'
+          ]);
 
         }, 1500);
 
@@ -93,11 +98,16 @@ export class Register {
 
       error: (error) => {
 
+        console.error(
+          'Registration failed:',
+          error
+        );
+
         this.message =
-
           error.error?.message ||
-
           'Registration failed.';
+
+        this.cdr.detectChanges();
 
       }
 
@@ -105,9 +115,15 @@ export class Register {
 
   }
 
+  // ==========================
+  // Go To Login
+  // ==========================
+
   goToLogin(): void {
 
-    this.router.navigate(['/subscriber/login']);
+    this.router.navigate([
+      '/subscriber-login'
+    ]);
 
   }
 

@@ -62,19 +62,49 @@ export class Subscribers implements OnInit {
 
   filterSubscribers(): void {
 
-    const value = this.search.trim().toLowerCase();
+  const value = this.search.trim();
 
-    this.filteredSubscribers = this.subscribers.filter(subscriber =>
+  // If search box is empty, show all subscribers
+  if (!value) {
 
-      subscriber.name.toLowerCase().includes(value) ||
+    this.filteredSubscribers = [...this.subscribers];
 
-      subscriber.email.toLowerCase().includes(value) ||
-
-      subscriber.phone.includes(value)
-
-    );
+    return;
 
   }
+
+  this.subscriberService.searchSubscribers(value).subscribe({
+
+    next: (data: Subscriber[]) => {
+
+      this.filteredSubscribers = data;
+
+      this.cdr.detectChanges();
+
+    },
+
+    error: (error) => {
+
+      if (error.status === 404) {
+
+        this.filteredSubscribers = [];
+
+      } else {
+
+        console.error(
+          'Subscriber search failed:',
+          error
+        );
+
+      }
+
+      this.cdr.detectChanges();
+
+    }
+
+  });
+
+}
 
   editSubscriber(subscriber: Subscriber): void {
     // Close delete modal if it is open

@@ -155,14 +155,10 @@ export class Inbox implements OnInit {
 
   openNewsletter(id: number): void {
 
-    this.router.navigate([
+  this.router.navigate([
+    '/subscriber/newsletter',
+    id
+  ]);
 
-      '/newsletter',
-
-      id
-
-    ]);
-
-  }
-
+}
 }

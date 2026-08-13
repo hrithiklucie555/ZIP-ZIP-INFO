@@ -68,6 +68,8 @@ export class HelpSupport implements OnInit {
 
       this.ticket.email = user.email;
 
+      this.loadTickets();
+
     }
 
 }
