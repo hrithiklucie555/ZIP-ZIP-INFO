@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 import { Sidebar } from '../sidebar/sidebar';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-subscriber-layout',
@@ -14,5 +15,18 @@ import { Sidebar } from '../sidebar/sidebar';
   styleUrl: './layout.css'
 })
 export class Layout {
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
+
+  logout(): void {
+
+    this.authService.logout();
+
+    this.router.navigate(['/subscriber-login']);
+
+  }
 
 }

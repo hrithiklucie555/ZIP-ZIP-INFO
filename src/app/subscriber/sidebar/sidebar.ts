@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-subscriber-sidebar',
   standalone: true,
@@ -14,7 +16,8 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 export class Sidebar {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   // ==========================
@@ -23,9 +26,9 @@ export class Sidebar {
 
   logout(): void {
 
-    localStorage.removeItem('subscriber');
+    this.authService.logout();
 
-    this.router.navigate(['/subscriber/login']);
+    this.router.navigate(['/subscriber-login']);
 
   }
 

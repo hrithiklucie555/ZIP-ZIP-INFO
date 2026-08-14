@@ -44,11 +44,18 @@ export class Login {
       }
     ).subscribe({
 
-      next: (response) => {
+    next: (response) => {
 
-        this.authService.setCurrentUser(
-  response.subscriber
-);
+  // Store JWT token
+  localStorage.setItem(
+    'token',
+    response.token
+  );
+
+  // Store logged-in subscriber
+  this.authService.setCurrentUser(
+    response.subscriber
+  );
 
         this.router.navigate(['/subscriber/home']);
 
@@ -68,7 +75,7 @@ export class Login {
 
   goToRegister(): void {
 
-    this.router.navigate(['/subscriber-register']);
+    this.router.navigate(['/subscriber/register']);
 
   }
 

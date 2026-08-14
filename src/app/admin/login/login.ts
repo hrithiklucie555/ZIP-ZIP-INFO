@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -20,23 +21,40 @@ export class Login {
   rememberMe = false;
 
   constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  private router: Router,
+  private authService: AuthService,
+  private http: HttpClient
+) {}
 
-  login(): void {
+login(): void {
 
-    if (!this.username.trim() || !this.password.trim()) {
+  if (!this.username.trim() || !this.password.trim()) {
 
-      this.errorMessage = "Please enter username and password.";
-      return;
+    this.errorMessage = "Please enter username and password.";
 
+    return;
+
+  }
+
+  this.http.post<any>(
+    "http://localhost:3000/admin-login",
+    {
+      username: this.username,
+      password: this.password
     }
+  ).subscribe({
 
-    if (this.authService.login(this.username, this.password)) {
+    next: (response) => {
 
       this.errorMessage = "";
 
+      // Store Admin JWT
+      localStorage.setItem(
+        'token',
+        response.token
+      );
+
+      // Keep existing admin login state
       if (this.rememberMe) {
 
         this.authService.rememberLogin();
@@ -45,12 +63,19 @@ export class Login {
 
       this.router.navigate(['/dashboard']);
 
-    } else {
+    },
 
-      this.errorMessage = "Invalid username or password.";
+    error: (error) => {
+
+      console.error("Admin login failed:", error);
+
+      this.errorMessage =
+        error.error?.message ||
+        "Invalid username or password.";
 
     }
 
-  }
+  });
 
+}
 }
