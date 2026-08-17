@@ -75,7 +75,7 @@ export class Login {
 
   goToRegister(): void {
 
-    this.router.navigate(['/subscriber/register']);
+    this.router.navigate(['/subscriber-register']);
 
   }
 
