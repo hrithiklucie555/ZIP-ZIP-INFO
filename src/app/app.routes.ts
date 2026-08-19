@@ -2,7 +2,10 @@ import { Routes } from '@angular/router';
 
 import { PortalSelection } from './shared/portal-selection/portal-selection';
 
+// ==========================
 // Admin
+// ==========================
+
 import { Login } from './admin/login/login';
 import { Dashboard } from './admin/dashboard/dashboard';
 import { Newsletters } from './admin/newsletters/newsletters';
@@ -12,17 +15,30 @@ import { Reports } from './admin/reports/reports';
 import { Settings } from './admin/settings/settings';
 import { HelpSupport } from './admin/help-support/help-support';
 
+// ==========================
 // Subscriber
+// ==========================
+
 import { Register } from './subscriber/register/register';
 import { Login as SubscriberLogin } from './subscriber/login/login';
-import { SubscriberHome} from './subscriber/home/home';
+import { SubscriberHome } from './subscriber/home/home';
 import { Inbox } from './subscriber/inbox/inbox';
 import { ReadNewsletter } from './subscriber/read-newsletter/read-newsletter';
 import { HelpSupport as SubscriberHelpSupport } from './subscriber/help-support/help-support';
 
+// ==========================
+// Editor
+// ==========================
+
+import { Dashboard as EditorDashboard } from './editor/dashboard/dashboard';
+
+// ==========================
 // Layouts
+// ==========================
+
 import { Layout } from './layout/layout';
 import { Layout as SubscriberLayout } from './subscriber/layout/layout';
+
 
 export const routes: Routes = [
 
@@ -35,6 +51,7 @@ export const routes: Routes = [
     component: PortalSelection
   },
 
+
   // ==========================
   // Admin Login
   // ==========================
@@ -44,6 +61,7 @@ export const routes: Routes = [
     component: Login
   },
 
+
   // ==========================
   // Admin Layout
   // ==========================
@@ -51,6 +69,7 @@ export const routes: Routes = [
   {
     path: '',
     component: Layout,
+
     children: [
 
       {
@@ -89,8 +108,8 @@ export const routes: Routes = [
       }
 
     ]
-
   },
+
 
   // ==========================
   // Subscriber Authentication
@@ -106,42 +125,57 @@ export const routes: Routes = [
     component: SubscriberLogin
   },
 
+
   // ==========================
   // Subscriber Layout
-  // =====================
+  // ==========================
+
   {
-  path: 'subscriber',
-  component: SubscriberLayout,
-  children: [
+    path: 'subscriber',
 
-    {
-      path: 'home',
-      component: SubscriberHome
-    },
+    component: SubscriberLayout,
 
-    {
-      path: 'inbox',
-      component: Inbox
-    },
+    children: [
 
-    {
-      path: 'help-support',
-      component: SubscriberHelpSupport
-    },
+      {
+        path: 'home',
+        component: SubscriberHome
+      },
 
-    {
-      path: 'newsletter/:id',
-      component: ReadNewsletter
-    },
+      {
+        path: 'inbox',
+        component: Inbox
+      },
 
-    {
-      path: '',
-      redirectTo: 'home',
-      pathMatch: 'full'
-    }
+      {
+        path: 'help-support',
+        component: SubscriberHelpSupport
+      },
 
-  ]
-},
+      {
+        path: 'newsletter/:id',
+        component: ReadNewsletter
+      },
+
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      }
+
+    ]
+  },
+
+
+  // ==========================
+  // Editor Dashboard
+  // ==========================
+
+  {
+    path: 'editor/dashboard',
+    component: EditorDashboard
+  },
+
 
   // ==========================
   // Wildcard
