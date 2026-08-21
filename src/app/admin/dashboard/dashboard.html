@@ -10,6 +10,7 @@
 
 </header>
 
+
 <!-- KPI Cards -->
 
 <section class="cards">
@@ -26,6 +27,7 @@
 
     </div>
 
+
     <div class="card">
 
         <div class="icon">📧</div>
@@ -37,6 +39,7 @@
         <small>Using Gmail</small>
 
     </div>
+
 
     <div class="card">
 
@@ -50,23 +53,26 @@
 
     </div>
 
+
     <div class="card">
 
         <div class="icon">📰</div>
 
         <h4>Published Newsletters</h4>
 
-        <h2>{{ totalNewsletters }}</h2>
+        <h2>{{ publishedNewsletters }}</h2>
 
-        <small>Total newsletters</small>
+        <small>Published newsletters</small>
 
     </div>
 
 </section>
 
+
 <!-- Bottom Grid -->
 
 <section class="bottom-grid">
+
 
     <!-- Recent Subscribers -->
 
@@ -81,7 +87,6 @@
                 <tr>
 
                     <th>Name</th>
-
                     <th>Email</th>
 
                 </tr>
@@ -90,13 +95,20 @@
 
             <tbody>
 
-                @for (subscriber of subscribers.slice(0,5); track subscriber.id) {
+                @for (
+                    subscriber of subscribers.slice(0,5);
+                    track subscriber.id
+                ) {
 
                     <tr>
 
-                        <td>{{ subscriber.name }}</td>
+                        <td>
+                            {{ subscriber.name }}
+                        </td>
 
-                        <td>{{ subscriber.email }}</td>
+                        <td>
+                            {{ subscriber.email }}
+                        </td>
 
                     </tr>
 
@@ -107,6 +119,7 @@
         </table>
 
     </div>
+
 
     <!-- Recent Newsletters -->
 
@@ -121,7 +134,6 @@
                 <tr>
 
                     <th>Title</th>
-
                     <th>Category</th>
 
                 </tr>
@@ -130,13 +142,20 @@
 
             <tbody>
 
-                @for (newsletter of newsletters.slice(0,5); track newsletter.id) {
+                @for (
+                    newsletter of newsletters.slice(0,5);
+                    track newsletter.id
+                ) {
 
                     <tr>
 
-                        <td>{{ newsletter.title }}</td>
+                        <td>
+                            {{ newsletter.title }}
+                        </td>
 
-                        <td>{{ newsletter.category }}</td>
+                        <td>
+                            {{ newsletter.category }}
+                        </td>
 
                     </tr>
 
@@ -145,6 +164,154 @@
             </tbody>
 
         </table>
+
+    </div>
+
+</section>
+
+
+<!-- Pending Newsletters -->
+
+<section class="pending-section">
+
+    <div class="panel pending-panel">
+
+
+        <!-- Pending Header -->
+
+        <div class="pending-header">
+
+            <div>
+
+                <h3>Pending Newsletter Approvals</h3>
+
+                <p>
+                    Review newsletters submitted by editors.
+                </p>
+
+            </div>
+
+
+            <span class="pending-count">
+
+                {{
+                    newsletters.filter(
+                        newsletter =>
+                            newsletter.status?.toLowerCase() === 'pending'
+                    ).length
+                }}
+
+                Pending
+
+            </span>
+
+        </div>
+
+
+        <!-- Pending Newsletter List -->
+
+        @for (
+            newsletter of newsletters;
+            track newsletter.id
+        ) {
+
+            @if (
+                newsletter.status?.toLowerCase() === 'pending'
+            ) {
+
+                <div class="pending-newsletter">
+
+
+                    <!-- Newsletter Content -->
+
+                    <div class="pending-newsletter-content">
+
+                        <h4>
+                            {{ newsletter.subject || newsletter.title }}
+                        </h4>
+
+
+                        <p class="pending-category">
+
+                            Category:
+                            {{ newsletter.category }}
+
+                        </p>
+
+
+                        <p class="pending-article">
+
+                            {{ newsletter.content }}
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    <div class="pending-status">
+
+                        <span class="pending-badge">
+                            Pending Approval
+                        </span>
+
+                    </div>
+
+
+                    <!-- Approval Actions -->
+
+                    <div class="approval-actions">
+
+                        <button
+                            class="approve-btn"
+                            type="button"
+                            (click)="approveNewsletter(newsletter.id)"
+                        >
+                            ✓ Approve
+                        </button>
+
+
+                        <button
+                            class="reject-btn"
+                            type="button"
+                            (click)="rejectNewsletter(newsletter.id)"
+                        >
+                            ✕ Reject
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            }
+
+        }
+
+
+        <!-- No Pending Newsletters -->
+
+        @if (
+            newsletters.filter(
+                newsletter =>
+                    newsletter.status?.toLowerCase() === 'pending'
+            ).length === 0
+        ) {
+
+            <div class="no-pending">
+
+                <h4>No Pending Newsletters</h4>
+
+                <p>
+                    There are currently no newsletters waiting
+                    for approval.
+                </p>
+
+            </div>
+
+        }
+
 
     </div>
 

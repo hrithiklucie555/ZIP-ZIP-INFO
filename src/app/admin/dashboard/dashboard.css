@@ -1,42 +1,37 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
+
 
 /* ===========================
    Top Bar
 =========================== */
 
-.topbar{
+.topbar {
+    background: white;
 
-    background:white;
+    padding: 30px;
 
-    padding:30px;
+    border-radius: 18px;
 
-    border-radius:18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-    margin-bottom:35px;
-
+    margin-bottom: 35px;
 }
 
-.topbar h1{
+.topbar h1 {
+    color: #1E3A8A;
 
-    color:#1E3A8A;
-
-    font-size:36px;
-
+    font-size: 36px;
 }
 
-.topbar p{
+.topbar p {
+    margin-top: 8px;
 
-    margin-top:8px;
-
-    color:#666;
-
+    color: #666;
 }
 
 
@@ -44,70 +39,57 @@
    KPI Cards
 =========================== */
 
-.cards{
+.cards {
+    display: grid;
 
-    display:grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
 
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap: 25px;
 
-    gap:25px;
-
-    margin-bottom:35px;
-
+    margin-bottom: 35px;
 }
 
-.card{
+.card {
+    background: white;
 
-    background:white;
+    border-radius: 18px;
 
-    border-radius:18px;
+    padding: 30px;
 
-    padding:30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition: .3s;
 
-    transition:.3s;
-
-    border-left:6px solid #2563EB;
-
+    border-left: 6px solid #2563EB;
 }
 
-.card:hover{
-
-    transform:translateY(-6px);
-
+.card:hover {
+    transform: translateY(-6px);
 }
 
-.card .icon{
+.card .icon {
+    font-size: 36px;
 
-    font-size:36px;
-
-    margin-bottom:15px;
-
+    margin-bottom: 15px;
 }
 
-.card h4{
+.card h4 {
+    color: #666;
 
-    color:#666;
-
-    margin-bottom:10px;
-
+    margin-bottom: 10px;
 }
 
-.card h2{
+.card h2 {
+    font-size: 38px;
 
-    font-size:38px;
+    color: #1E3A8A;
 
-    color:#1E3A8A;
-
-    margin-bottom:10px;
-
+    margin-bottom: 10px;
 }
 
-.card small{
-
-    color:#888;
-
+.card small {
+    color: #888;
 }
 
 
@@ -115,34 +97,35 @@
    Bottom Grid
 =========================== */
 
-.bottom-grid{
+.bottom-grid {
+    display: grid;
 
-    display:grid;
+    grid-template-columns: 1fr 1fr;
 
-    grid-template-columns:1fr 1fr;
+    gap: 30px;
 
-    gap:30px;
-
+    margin-bottom: 30px;
 }
 
-.panel{
 
-    background:white;
+/* ===========================
+   Panels
+=========================== */
 
-    border-radius:18px;
+.panel {
+    background: white;
 
-    padding:25px;
+    border-radius: 18px;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    padding: 25px;
 
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
 }
 
-.panel h3{
+.panel h3 {
+    color: #1E3A8A;
 
-    color:#1E3A8A;
-
-    margin-bottom:20px;
-
+    margin-bottom: 20px;
 }
 
 
@@ -150,38 +133,316 @@
    Tables
 =========================== */
 
-table{
+table {
+    width: 100%;
 
-    width:100%;
-
-    border-collapse:collapse;
-
+    border-collapse: collapse;
 }
 
-th{
+th {
+    background: #2563EB;
 
-    background:#2563EB;
+    color: white;
 
-    color:white;
+    padding: 14px;
 
-    padding:14px;
-
-    text-align:left;
-
+    text-align: left;
 }
 
-td{
+td {
+    padding: 14px;
 
-    padding:14px;
-
-    border-bottom:1px solid #eee;
-
+    border-bottom: 1px solid #eee;
 }
 
-tr:hover{
+tr:hover {
+    background: #EEF4FF;
+}
 
-    background:#EEF4FF;
 
+/* ===========================
+   Pending Newsletter Section
+=========================== */
+
+.pending-section {
+    margin-top: 30px;
+
+    margin-bottom: 30px;
+}
+
+.pending-panel {
+    padding: 30px;
+}
+
+
+/* ===========================
+   Pending Header
+=========================== */
+
+.pending-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.pending-header h3 {
+    color: #1E3A8A;
+
+    font-size: 24px;
+
+    margin-bottom: 6px;
+}
+
+.pending-header p {
+    color: #666;
+
+    margin: 0;
+}
+
+.pending-count {
+    background: #FEF3C7;
+
+    color: #92400E;
+
+    padding: 10px 16px;
+
+    border-radius: 20px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* ===========================
+   Pending Newsletter Card
+=========================== */
+
+.pending-newsletter {
+    background: #F8FAFC;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    grid-template-areas:
+        "content status"
+        "content actions";
+
+    gap: 18px 25px;
+
+    transition: .3s;
+}
+
+.pending-newsletter:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+    border-color: #BFDBFE;
+}
+
+
+/* ===========================
+   Pending Content
+=========================== */
+
+.pending-newsletter-content {
+    grid-area: content;
+}
+
+.pending-newsletter-content h4 {
+    color: #111827;
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+}
+
+.pending-category {
+    color: #2563EB;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+.pending-article {
+    color: #555;
+
+    line-height: 1.6;
+}
+
+
+/* ===========================
+   Pending Status
+=========================== */
+
+.pending-status {
+    grid-area: status;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: flex-start;
+}
+
+.pending-badge {
+    background: #FEF3C7;
+
+    color: #92400E;
+
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* ===========================
+   Approval Buttons
+=========================== */
+
+.approval-actions {
+    grid-area: actions;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+}
+
+.approve-btn,
+.reject-btn {
+    border: none;
+
+    padding: 11px 20px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+/* Approve */
+
+.approve-btn {
+    background: #16A34A;
+
+    color: white;
+}
+
+.approve-btn:hover {
+    background: #15803D;
+
+    transform: translateY(-2px);
+}
+
+
+/* Reject */
+
+.reject-btn {
+    background: #DC2626;
+
+    color: white;
+}
+
+.reject-btn:hover {
+    background: #B91C1C;
+
+    transform: translateY(-2px);
+}
+
+
+/* ===========================
+   No Pending Newsletters
+=========================== */
+
+.no-pending {
+    text-align: center;
+
+    padding: 45px 20px;
+
+    background: #F8FAFC;
+
+    border-radius: 14px;
+
+    border: 1px dashed #CBD5E1;
+}
+
+.no-pending h4 {
+    color: #1E3A8A;
+
+    font-size: 20px;
+
+    margin-bottom: 8px;
+}
+
+.no-pending p {
+    color: #777;
+}
+
+
+/* ===========================
+   Warning
+=========================== */
+
+.warning {
+    color: #DC2626;
+
+    margin: 20px 0;
+
+    font-weight: 600;
+}
+
+
+/* ===========================
+   Delete Button
+=========================== */
+
+.delete-confirm-btn {
+    background: #DC2626;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.delete-confirm-btn:hover {
+    background: #B91C1C;
 }
 
 
@@ -189,46 +450,51 @@ tr:hover{
    Responsive
 =========================== */
 
-@media(max-width:1100px){
+@media (max-width: 1100px) {
 
-    .bottom-grid{
-
-        grid-template-columns:1fr;
-
+    .bottom-grid {
+        grid-template-columns: 1fr;
     }
 
 }
 
-.warning{
 
-    color:#DC2626;
+@media (max-width: 700px) {
 
-    margin:20px 0;
+    .pending-header {
+        flex-direction: column;
 
-    font-weight:600;
+        align-items: flex-start;
 
-}
+        gap: 15px;
+    }
 
-.delete-confirm-btn{
 
-    background:#DC2626;
+    .pending-newsletter {
+        grid-template-columns: 1fr;
 
-    color:white;
+        grid-template-areas:
+            "content"
+            "status"
+            "actions";
+    }
 
-    border:none;
 
-    padding:10px 20px;
+    .pending-status {
+        justify-content: flex-start;
+    }
 
-    border-radius:10px;
 
-    cursor:pointer;
+    .approval-actions {
+        justify-content: flex-start;
 
-    transition:.3s;
+        flex-wrap: wrap;
+    }
 
-}
 
-.delete-confirm-btn:hover{
-
-    background:#B91C1C;
+    .approve-btn,
+    .reject-btn {
+        flex: 1;
+    }
 
 }

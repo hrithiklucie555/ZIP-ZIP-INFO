@@ -1,0 +1,153 @@
+<div class="create-container">
+
+  <!-- Page Header -->
+  <div class="page-header">
+
+    <div>
+      <h1>Create Newsletter</h1>
+
+      <p>
+        Write your article and save it as a draft.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="cancel-button"
+      (click)="cancel()"
+    >
+      Cancel
+    </button>
+
+  </div>
+
+
+  <!-- Form Card -->
+  <div class="form-card">
+
+    <!-- Success Message -->
+    <div
+      class="success-message"
+      *ngIf="message"
+    >
+      {{ message }}
+    </div>
+
+
+    <!-- Error Message -->
+    <div
+      class="error-message"
+      *ngIf="errorMessage"
+    >
+      {{ errorMessage }}
+    </div>
+
+
+    <!-- Subject -->
+    <div class="form-group">
+
+      <label for="subject">
+        Subject
+      </label>
+
+      <input
+        id="subject"
+        type="text"
+        [(ngModel)]="subject"
+        placeholder="Enter newsletter subject"
+      />
+
+    </div>
+
+
+    <!-- Category -->
+    <div class="form-group">
+
+      <label for="category">
+        Category
+      </label>
+
+      <select
+        id="category"
+        [(ngModel)]="category"
+      >
+
+        <option value="">
+          Select a category
+        </option>
+
+        <option value="Technology">
+          Technology
+        </option>
+
+        <option value="Business">
+          Business
+        </option>
+
+        <option value="Education">
+          Education
+        </option>
+
+        <option value="Science">
+          Science
+        </option>
+
+        <option value="Entertainment">
+          Entertainment
+        </option>
+
+        <option value="Sports">
+          Sports
+        </option>
+
+        <option value="Other">
+          Other
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- Article Content -->
+    <div class="form-group">
+
+      <label for="content">
+        Article Content
+      </label>
+
+      <textarea
+        id="content"
+        [(ngModel)]="content"
+        rows="12"
+        placeholder="Write your newsletter article here..."
+      ></textarea>
+
+    </div>
+
+
+    <!-- Buttons -->
+    <div class="form-actions">
+
+      <button
+        type="button"
+        class="cancel-button"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        class="save-button"
+        [disabled]="isSubmitting"
+        (click)="createNewsletter()"
+      >
+        {{ isSubmitting ? 'Saving...' : 'Save as Draft' }}
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

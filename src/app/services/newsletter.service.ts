@@ -11,15 +11,31 @@ export class NewsletterService {
 
   private readonly API = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient
+  ) {}
+
+
+  // ==========================================
+  // GET ALL NEWSLETTERS
+  // ==========================================
 
   getNewsletters(): Observable<Newsletter[]> {
 
-    return this.http.get<Newsletter[]>(`${this.API}/newsletters`);
+    return this.http.get<Newsletter[]>(
+      `${this.API}/newsletters`
+    );
 
   }
 
-  publishNewsletter(newsletter: Newsletter): Observable<Newsletter> {
+
+  // ==========================================
+  // CREATE / PUBLISH NEWSLETTER
+  // ==========================================
+
+  publishNewsletter(
+    newsletter: Newsletter
+  ): Observable<Newsletter> {
 
     return this.http.post<Newsletter>(
       `${this.API}/newsletters`,
@@ -27,6 +43,11 @@ export class NewsletterService {
     );
 
   }
+
+
+  // ==========================================
+  // UPDATE NEWSLETTER
+  // ==========================================
 
   updateNewsletter(
     id: number,
@@ -40,7 +61,47 @@ export class NewsletterService {
 
   }
 
-  deleteNewsletter(id: number): Observable<void> {
+
+  // ==========================================
+  // ADMIN - APPROVE NEWSLETTER
+  // Pending → Published
+  // ==========================================
+
+  approveNewsletter(
+    id: number
+  ): Observable<any> {
+
+    return this.http.put<any>(
+      `${this.API}/admin/newsletters/${id}/approve`,
+      {}
+    );
+
+  }
+
+  // ==========================================
+// ADMIN - REJECT NEWSLETTER
+// Pending → Rejected
+// ==========================================
+
+rejectNewsletter(
+  id: number
+): Observable<any> {
+
+  return this.http.post<any>(
+    `${this.API}/admin/newsletters/${id}/reject`,
+    {}
+  );
+
+}
+
+
+  // ==========================================
+  // DELETE NEWSLETTER
+  // ==========================================
+
+  deleteNewsletter(
+    id: number
+  ): Observable<void> {
 
     return this.http.delete<void>(
       `${this.API}/newsletters/${id}`

@@ -1,60 +1,336 @@
-<div class="editor-dashboard">
+<!-- ==========================
+     Editor Header
+=========================== -->
 
-  <div class="dashboard-header">
+<header class="editor-header">
+
     <div>
-      <h1>Editor Dashboard</h1>
-      <p>Create and manage your newsletters.</p>
+        <h1>Editor Dashboard</h1>
+
+        <p>
+            Create and manage your newsletters.
+        </p>
     </div>
 
-    <button class="create-btn">
-      + Create Newsletter
+    <button
+        class="create-button"
+        type="button"
+        routerLink="/editor/create-newsletter"
+    >
+        + Create Newsletter
     </button>
-  </div>
 
-  <div class="stats">
+</header>
+
+
+<!-- ==========================
+     Statistics
+=========================== -->
+
+<section class="stats-grid">
 
     <div class="stat-card">
-      <h3>Total Newsletters</h3>
-      <p>0</p>
+        <div class="stat-icon">📰</div>
+        <div>
+            <p>Total Newsletters</p>
+            <h2>{{ totalNewsletters }}</h2>
+        </div>
     </div>
 
     <div class="stat-card">
-      <h3>Drafts</h3>
-      <p>0</p>
+        <div class="stat-icon">📝</div>
+        <div>
+            <p>Drafts</p>
+            <h2>{{ drafts }}</h2>
+        </div>
     </div>
 
     <div class="stat-card">
-      <h3>Pending</h3>
-      <p>0</p>
+        <div class="stat-icon">⏳</div>
+        <div>
+            <p>Pending</p>
+            <h2>{{ pending }}</h2>
+        </div>
     </div>
 
     <div class="stat-card">
-      <h3>Published</h3>
-      <p>0</p>
+        <div class="stat-icon">✅</div>
+        <div>
+            <p>Published</p>
+            <h2>{{ published }}</h2>
+        </div>
     </div>
 
-  </div>
+    <div class="stat-card">
+        <div class="stat-icon">❌</div>
+        <div>
+            <p>Rejected</p>
+            <h2>{{ rejected }}</h2>
+        </div>
+    </div>
 
-  <div class="newsletter-section">
+</section>
+
+
+<!-- ==========================
+     Message
+=========================== -->
+
+<div
+    class="message"
+    *ngIf="message"
+>
+    {{ message }}
+</div>
+
+
+<!-- ==========================
+     My Newsletters
+=========================== -->
+
+<section class="newsletters-section">
 
     <div class="section-header">
-      <h2>My Newsletters</h2>
+
+        <div>
+
+            <h2>My Newsletters</h2>
+
+            <p>
+                View and track your submitted newsletters.
+            </p>
+
+        </div>
+
+        <span class="newsletter-count">
+
+            {{ newsletters.length }}
+            Newsletters
+
+        </span>
+
     </div>
 
-    <div class="empty-state">
 
-      <h3>No newsletters yet</h3>
+    <!-- ==========================
+         Newsletter Grid
+    =========================== -->
 
-      <p>
-        Create your first newsletter to get started.
-      </p>
+    <div
+        class="newsletter-grid"
+        *ngIf="newsletters.length > 0"
+    >
 
-      <button class="create-btn">
-        + Create Newsletter
-      </button>
+        @for (
+            newsletter of newsletters;
+            track newsletter.id
+        ) {
+
+            <div class="newsletter-card">
+
+                <!-- Card Header -->
+
+                <div class="newsletter-card-header">
+
+                    <h3>
+                        {{ newsletter.subject }}
+                    </h3>
+
+                    <!-- Status -->
+
+                    <span
+                        class="status-badge"
+                        [ngClass]="{
+
+                            'status-draft':
+                                newsletter.status?.toLowerCase() === 'draft',
+
+                            'status-pending':
+                                newsletter.status?.toLowerCase() === 'pending',
+
+                            'status-published':
+                                newsletter.status?.toLowerCase() === 'published',
+
+                            'status-rejected':
+                                newsletter.status?.toLowerCase() === 'rejected'
+
+                        }"
+                    >
+
+                        <span
+                            *ngIf="
+                                newsletter.status?.toLowerCase() === 'published'
+                            "
+                        >
+                            ✓
+                        </span>
+
+                        <span
+                            *ngIf="
+                                newsletter.status?.toLowerCase() === 'pending'
+                            "
+                        >
+                            ⏳
+                        </span>
+
+                        <span
+                            *ngIf="
+                                newsletter.status?.toLowerCase() === 'rejected'
+                            "
+                        >
+                            ✕
+                        </span>
+
+                        <span
+                            *ngIf="
+                                newsletter.status?.toLowerCase() === 'draft'
+                            "
+                        >
+                            📝
+                        </span>
+
+                        {{ newsletter.status }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- Category -->
+
+                <div class="newsletter-category">
+
+                    {{ newsletter.category }}
+
+                </div>
+
+
+                <!-- Content -->
+
+                <p class="newsletter-content">
+
+                    {{ newsletter.content }}
+
+                </p>
+
+
+                <!-- ==========================
+                     Draft Actions
+                =========================== -->
+
+                <div
+                    class="draft-actions"
+                    *ngIf="
+                        newsletter.status?.toLowerCase() === 'draft'
+                    "
+                >
+
+                    <button
+                        class="edit-draft-btn"
+                        type="button"
+                        [routerLink]="[
+                            '/editor/create-newsletter'
+                        ]"
+                        [queryParams]="{
+                            id: newsletter.id
+                        }"
+                    >
+                        ✏️ Edit
+                    </button>
+
+
+                    <button
+                        class="submit-draft-btn"
+                        type="button"
+                        (click)="submitForApproval(newsletter)"
+                    >
+                        📤 Submit for Approval
+                    </button>
+
+                </div>
+
+
+                <!-- Footer -->
+
+                <div class="newsletter-footer">
+
+                    <span
+                        *ngIf="
+                            newsletter.status?.toLowerCase() === 'pending'
+                        "
+                        class="footer-info pending-info"
+                    >
+                        Awaiting admin approval
+                    </span>
+
+
+                    <span
+                        *ngIf="
+                            newsletter.status?.toLowerCase() === 'published'
+                        "
+                        class="footer-info published-info"
+                    >
+                        Newsletter published
+                    </span>
+
+
+                    <span
+                        *ngIf="
+                            newsletter.status?.toLowerCase() === 'rejected'
+                        "
+                        class="footer-info rejected-info"
+                    >
+                        Newsletter rejected
+                    </span>
+
+
+                    <span
+                        *ngIf="
+                            newsletter.status?.toLowerCase() === 'draft'
+                        "
+                        class="footer-info draft-info"
+                    >
+                        Saved as draft
+                    </span>
+
+                </div>
+
+            </div>
+
+        }
 
     </div>
 
-  </div>
 
-</div>
+    <!-- ==========================
+         Empty State
+    =========================== -->
+
+    <div
+        class="empty-state"
+        *ngIf="newsletters.length === 0 && !message"
+    >
+
+        <div class="empty-icon">
+            📰
+        </div>
+
+        <h3>
+            No newsletters yet
+        </h3>
+
+        <p>
+            Create your first newsletter to get started.
+        </p>
+
+        <button
+            class="create-button"
+            type="button"
+            routerLink="/editor/create-newsletter"
+        >
+            + Create Newsletter
+        </button>
+
+    </div>
+
+</section>

@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-
-import { PortalSelection } from './shared/portal-selection/portal-selection';
+import { CommonLogin } from './shared/common-login/common-login';
 
 // ==========================
 // Admin
@@ -31,6 +30,7 @@ import { HelpSupport as SubscriberHelpSupport } from './subscriber/help-support/
 // ==========================
 
 import { Dashboard as EditorDashboard } from './editor/dashboard/dashboard';
+import { CreateNewsletter } from './editor/create-newsletter/create-newsletter';
 
 // ==========================
 // Layouts
@@ -48,8 +48,10 @@ export const routes: Routes = [
 
   {
     path: '',
-    component: PortalSelection
+    component: CommonLogin
   },
+
+
 
 
   // ==========================
@@ -175,6 +177,11 @@ export const routes: Routes = [
     path: 'editor/dashboard',
     component: EditorDashboard
   },
+
+  {
+  path: 'editor/create-newsletter',
+  component: CreateNewsletter
+},
 
 
   // ==========================
