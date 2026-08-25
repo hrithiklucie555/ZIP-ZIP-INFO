@@ -209,5 +209,18 @@ export class SubscriberHome implements OnInit {
   ]);
 
 }
+logout(): void {
+
+  localStorage.removeItem('token');
+
+  localStorage.removeItem('currentUser');
+
+  localStorage.removeItem('loggedIn');
+
+  localStorage.removeItem('role');
+
+  this.router.navigate(['/login']);
+
+}
 
 }

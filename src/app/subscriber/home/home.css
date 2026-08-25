@@ -309,3 +309,65 @@ background: #2563EB;
     transition: .3s;
     margin-bottom: 15px;
 }
+.welcome-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 20px;
+
+}
+
+
+.logout-button {
+
+    background: #DC2626;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    white-space: nowrap;
+
+}
+
+
+.logout-button:hover {
+
+    background: #B91C1C;
+
+    transform: translateY(-1px);
+
+}
+
+
+@media (max-width: 700px) {
+
+    .welcome-header {
+
+        flex-direction: column;
+
+    }
+
+    .logout-button {
+
+        width: 100%;
+
+    }
+
+}

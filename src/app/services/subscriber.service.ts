@@ -12,6 +12,7 @@ export class SubscriberService {
 
   constructor(private http: HttpClient) {}
 
+
   // ==========================
   // Get All Subscribers
   // ==========================
@@ -24,11 +25,14 @@ export class SubscriberService {
 
   }
 
+
   // ==========================
   // Search Subscribers
   // ==========================
 
-  searchSubscribers(search: string): Observable<any[]> {
+  searchSubscribers(
+    search: string
+  ): Observable<any[]> {
 
     return this.http.get<any[]>(
       `${this.API}/subscribers/search?q=${encodeURIComponent(search)}`
@@ -36,11 +40,14 @@ export class SubscriberService {
 
   }
 
+
   // ==========================
   // Register New Subscriber
   // ==========================
 
-  registerSubscriber(subscriber: any): Observable<any> {
+  registerSubscriber(
+    subscriber: any
+  ): Observable<any> {
 
     return this.http.post(
       `${this.API}/subscribe`,
@@ -49,17 +56,21 @@ export class SubscriberService {
 
   }
 
+
   // ==========================
   // Delete Subscriber
   // ==========================
 
-  deleteSubscriber(id: number): Observable<any> {
+  deleteSubscriber(
+    id: number
+  ): Observable<any> {
 
     return this.http.delete(
       `${this.API}/subscribers/${id}`
     );
 
   }
+
 
   // ==========================
   // Update Subscriber
@@ -76,6 +87,26 @@ export class SubscriberService {
     );
 
   }
+
+
+  // ==========================
+  // Update Subscriber Status
+  // ==========================
+
+  updateSubscriberStatus(
+    id: number,
+    status: string
+  ): Observable<any> {
+
+    return this.http.put(
+      `${this.API}/admin/subscribers/${id}/status`,
+      {
+        status: status
+      }
+    );
+
+  }
+
 
   // ==========================
   // Import Subscribers

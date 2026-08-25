@@ -124,3 +124,48 @@ button:disabled {
   background: none;
   text-decoration: underline;
 }
+
+/* ==========================
+   Forgot Password
+========================== */
+
+.forgot-password-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -5px;
+  margin-bottom: 20px;
+}
+
+/* Override the general login button styling */
+.login-card .forgot-password-button {
+  width: auto;
+  height: auto;
+
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  color: #2563EB;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: none;
+
+  transition: none;
+}
+
+.login-card .forgot-password-button:hover {
+  background: transparent;
+  color: #1D4ED8;
+
+  text-decoration: underline;
+
+  transform: none;
+}

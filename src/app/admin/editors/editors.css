@@ -1,0 +1,525 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.editors-page {
+  padding: 10px;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.page-header {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+}
+
+.page-header h1 {
+  margin: 0;
+
+  color: #1E3A8A;
+
+  font-size: 36px;
+}
+
+.page-header p {
+  margin-top: 8px;
+
+  color: #666;
+}
+
+
+/* =========================
+   Add Editor Button
+========================= */
+
+.add-editor-btn {
+  background: #2563EB;
+
+  color: white;
+
+  border: none;
+
+  padding: 14px 24px;
+
+  border-radius: 12px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.add-editor-btn:hover {
+  background: #1D4ED8;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   Messages
+========================= */
+
+.success-message {
+  background: #DCFCE7;
+
+  color: #166534;
+
+  padding: 14px 18px;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px;
+
+  font-weight: 600;
+}
+
+.error-message {
+  background: #FEE2E2;
+
+  color: #B91C1C;
+
+  padding: 14px 18px;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px;
+
+  font-weight: 600;
+}
+
+
+/* =========================
+   Editors Panel
+========================= */
+
+.editors-panel {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+}
+
+.panel-header {
+  margin-bottom: 25px;
+}
+
+.panel-header h2 {
+  margin: 0;
+
+  color: #1E3A8A;
+
+  font-size: 28px;
+}
+
+.panel-header p {
+  margin-top: 8px;
+
+  color: #666;
+}
+
+
+/* =========================
+   Table
+========================= */
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+thead {
+  background: #2563EB;
+
+  color: white;
+}
+
+th {
+  padding: 15px;
+
+  text-align: left;
+
+  font-weight: 600;
+}
+
+td {
+  padding: 16px;
+
+  border-bottom: 1px solid #E5E7EB;
+
+  color: #444;
+}
+
+tbody tr:hover {
+  background: #F8FAFC;
+}
+
+
+/* =========================
+   Status
+========================= */
+
+.status {
+  display: inline-block;
+
+  padding: 8px 14px;
+
+  border-radius: 20px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.status.active {
+  background: #DCFCE7;
+
+  color: #166534;
+}
+
+.status.inactive {
+  background: #FEE2E2;
+
+  color: #B91C1C;
+}
+
+
+/* =========================
+   Actions
+========================= */
+
+.actions {
+  display: flex;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+.actions button {
+  border: none;
+
+  padding: 9px 13px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.edit-btn {
+  background: #DBEAFE;
+
+  color: #1D4ED8;
+}
+
+.status-btn {
+  background: #FEF3C7;
+
+  color: #92400E;
+}
+
+.delete-btn {
+  background: #FEE2E2;
+
+  color: #B91C1C;
+}
+
+.actions button:hover {
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   Loading
+========================= */
+
+.loading {
+  text-align: center;
+
+  padding: 50px;
+
+  color: #666;
+
+  font-size: 16px;
+}
+
+
+/* =========================
+   No Editors
+========================= */
+
+.no-editors {
+  text-align: center;
+
+  padding: 50px;
+
+  background: #F8FAFC;
+
+  border-radius: 12px;
+}
+
+.no-editors h3 {
+  color: #1E3A8A;
+
+  margin-bottom: 8px;
+}
+
+.no-editors p {
+  color: #777;
+}
+
+
+/* =========================
+   Modal Overlay
+========================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, .5);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 1000;
+
+  padding: 20px;
+}
+
+
+/* =========================
+   Modal
+========================= */
+
+.editor-modal {
+  width: 100%;
+
+  max-width: 520px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 30px;
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, .25);
+}
+
+.modal-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  margin-bottom: 25px;
+}
+
+.modal-header h2 {
+  margin: 0;
+
+  color: #1E3A8A;
+
+  font-size: 26px;
+}
+
+.modal-header p {
+  margin-top: 7px;
+
+  color: #666;
+}
+
+.close-btn {
+  border: none;
+
+  background: #F1F5F9;
+
+  color: #555;
+
+  width: 36px;
+
+  height: 36px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  font-size: 16px;
+}
+
+
+/* =========================
+   Form
+========================= */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #333;
+
+  font-weight: 600;
+}
+
+.form-group label small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #888;
+
+  font-weight: normal;
+
+  font-size: 12px;
+}
+
+.form-group input {
+  width: 100%;
+
+  padding: 13px 15px;
+
+  border: 1px solid #CBD5E1;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #2563EB;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
+}
+
+.form-error {
+  background: #FEE2E2;
+
+  color: #B91C1C;
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  margin-bottom: 20px;
+
+  text-align: center;
+}
+
+
+/* =========================
+   Modal Buttons
+========================= */
+
+.modal-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+.cancel-btn,
+.save-btn {
+  border: none;
+
+  padding: 12px 22px;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #E5E7EB;
+
+  color: #374151;
+}
+
+.save-btn {
+  background: #2563EB;
+
+  color: white;
+}
+
+.save-btn:hover {
+  background: #1D4ED8;
+}
+
+.save-btn:disabled {
+  opacity: .6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 700px) {
+
+  .page-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+  .add-editor-btn {
+    width: 100%;
+  }
+
+  .editors-panel {
+    padding: 20px;
+  }
+
+  .editor-modal {
+    padding: 22px;
+  }
+
+}

@@ -18,7 +18,10 @@
       Login to continue to your portal
     </p>
 
+
     <form (ngSubmit)="login()">
+
+      <!-- Email -->
 
       <div class="form-group">
 
@@ -37,6 +40,9 @@
 
       </div>
 
+
+      <!-- Password -->
+
       <div class="form-group">
 
         <label for="password">
@@ -54,12 +60,35 @@
 
       </div>
 
+
+      <!-- Forgot Password -->
+
+      <div class="forgot-password-container">
+
+        <button
+          type="button"
+          class="forgot-password-button"
+          (click)="goToForgotPassword()"
+        >
+          Forgot Password?
+        </button>
+
+      </div>
+
+
+      <!-- Error -->
+
       <div
         class="error-message"
         *ngIf="errorMessage"
       >
+
         {{ errorMessage }}
+
       </div>
+
+
+      <!-- Login -->
 
       <button
         type="submit"
@@ -70,19 +99,24 @@
 
       </button>
 
+
+      <!-- Register -->
+
       <div class="register-link">
 
-  <span>Don't have an account? </span>
+        <span>
+          Don't have an account?
+        </span>
 
-  <button
-    type="button"
-    class="register-button"
-    (click)="goToRegister()"
-  >
-    Register as Subscriber
-  </button>
+        <button
+          type="button"
+          class="register-button"
+          (click)="goToRegister()"
+        >
+          Register as Subscriber
+        </button>
 
-</div>
+      </div>
 
     </form>
 

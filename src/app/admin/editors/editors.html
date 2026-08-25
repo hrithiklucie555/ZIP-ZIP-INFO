@@ -1,0 +1,375 @@
+<div class="editors-page">
+
+  <!-- =========================
+       Header
+  ========================== -->
+
+  <div class="page-header">
+
+    <div>
+      <h1>Manage Editors</h1>
+
+      <p>
+        Add, edit and manage editor accounts.
+      </p>
+    </div>
+
+    <button
+      class="add-editor-btn"
+      type="button"
+      (click)="openAddForm()"
+    >
+      + Add Editor
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       Messages
+  ========================== -->
+
+  @if (message) {
+
+    <div class="success-message">
+      {{ message }}
+    </div>
+
+  }
+
+  @if (errorMessage) {
+
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+
+  }
+
+
+  <!-- =========================
+       Editor List
+  ========================== -->
+
+  <div class="editors-panel">
+
+    <div class="panel-header">
+
+      <div>
+
+        <h2>Editors</h2>
+
+        <p>
+          {{ editors.length }} editor(s) registered
+        </p>
+
+      </div>
+
+    </div>
+
+
+    @if (loading) {
+
+      <div class="loading">
+        Loading editors...
+      </div>
+
+    }
+
+
+    @if (!loading && editors.length === 0) {
+
+      <div class="no-editors">
+
+        <h3>No Editors Found</h3>
+
+        <p>
+          Add an editor to get started.
+        </p>
+
+      </div>
+
+    }
+
+
+    @if (!loading && editors.length > 0) {
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Actions</th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            @for (
+              editor of editors;
+              track editor.id
+            ) {
+
+              <tr>
+
+                <td>
+                  {{ editor.id }}
+                </td>
+
+                <td>
+                  <strong>
+                    {{ editor.name }}
+                  </strong>
+                </td>
+
+                <td>
+                  {{ editor.email }}
+                </td>
+
+                <td>
+
+                  @if (
+                    editor.status?.toLowerCase() === 'active'
+                  ) {
+
+                    <span class="status active">
+                      Active
+                    </span>
+
+                  } @else {
+
+                    <span class="status inactive">
+                      Inactive
+                    </span>
+
+                  }
+
+                </td>
+
+
+                <td>
+
+                  <div class="actions">
+
+                    <button
+                      class="edit-btn"
+                      type="button"
+                      (click)="openEditForm(editor)"
+                    >
+                      ✏️ Edit
+                    </button>
+
+
+                    <button
+                      class="status-btn"
+                      type="button"
+                      (click)="toggleStatus(editor)"
+                    >
+
+                      {{
+                        editor.status?.toLowerCase() === 'active'
+                          ? 'Deactivate'
+                          : 'Activate'
+                      }}
+
+                    </button>
+
+
+                    <button
+                      class="delete-btn"
+                      type="button"
+                      (click)="deleteEditor(editor)"
+                    >
+                      🗑 Delete
+                    </button>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ADD / EDIT EDITOR MODAL
+========================== -->
+
+@if (showForm) {
+
+  <div class="modal-overlay">
+
+    <div class="editor-modal">
+
+      <div class="modal-header">
+
+        <div>
+
+          <h2>
+            {{ isEditing ? 'Edit Editor' : 'Add Editor' }}
+          </h2>
+
+          <p>
+
+            {{
+              isEditing
+                ? 'Update editor account details.'
+                : 'Create a new editor account.'
+            }}
+
+          </p>
+
+        </div>
+
+
+        <button
+          class="close-btn"
+          type="button"
+          (click)="closeForm()"
+        >
+          ✕
+        </button>
+
+      </div>
+
+
+      <!-- Form -->
+
+      <form
+        (ngSubmit)="saveEditor()"
+      >
+
+        <!-- Name -->
+
+        <div class="form-group">
+
+          <label for="editorName">
+            Name
+          </label>
+
+          <input
+            id="editorName"
+            type="text"
+            name="name"
+            [(ngModel)]="name"
+            placeholder="Enter editor name"
+          >
+
+        </div>
+
+
+        <!-- Email -->
+
+        <div class="form-group">
+
+          <label for="editorEmail">
+            Email
+          </label>
+
+          <input
+            id="editorEmail"
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            placeholder="Enter editor email"
+          >
+
+        </div>
+
+
+        <!-- Password -->
+
+        <div class="form-group">
+
+          <label for="editorPassword">
+
+            Password
+
+            @if (isEditing) {
+              <small>
+                Leave blank to keep current password.
+              </small>
+            }
+
+          </label>
+
+          <input
+            id="editorPassword"
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            placeholder="Enter password"
+          >
+
+        </div>
+
+
+        <!-- Form Error -->
+
+        @if (errorMessage) {
+
+          <div class="form-error">
+            {{ errorMessage }}
+          </div>
+
+        }
+
+
+        <!-- Buttons -->
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            (click)="closeForm()"
+          >
+            Cancel
+          </button>
+
+
+          <button
+            type="submit"
+            class="save-btn"
+            [disabled]="loading"
+          >
+
+            {{
+              loading
+                ? 'Saving...'
+                : (isEditing ? 'Update Editor' : 'Create Editor')
+            }}
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+}

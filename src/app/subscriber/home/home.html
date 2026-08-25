@@ -1,29 +1,40 @@
 <div class="home-container">
+<!-- Welcome Section -->
 
-    <!-- Welcome Section -->
+<div class="welcome-card">
 
-    <div class="welcome-card">
+    <div class="welcome-header">
 
-        <h1>
+        <div>
 
-            👋 Welcome Back, {{ subscriberName }}
+            <h1>
 
-        </h1>
+                👋 Welcome Back, {{ subscriberName }}
 
-        <p>
+            </h1>
 
-            Stay informed with the latest newsletters from
-            <strong>ZIP ZIP INFO</strong>.
+            <p>
 
-        </p>
+                Stay informed with the latest newsletters from
+                <strong>ZIP ZIP INFO</strong>.
 
-        <p class="date">
+            </p>
 
-            📅 {{ currentDate | date:'fullDate' }}
+        </div>
 
-        </p>
+
+    
 
     </div>
+
+
+    <p class="date">
+
+        📅 {{ currentDate | date:'fullDate' }}
+
+    </p>
+
+</div>
 
     <!-- Latest Newsletter -->
 

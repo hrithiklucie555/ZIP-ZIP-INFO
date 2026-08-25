@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders
+} from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 
 import { Newsletter } from '../models/newsletter';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsletterService {
 
-  private readonly API = 'http://localhost:3000';
+  private readonly API =
+    'http://localhost:3000';
+
 
   constructor(
     private http: HttpClient
@@ -71,28 +78,67 @@ export class NewsletterService {
     id: number
   ): Observable<any> {
 
+    const token =
+      localStorage.getItem('token');
+
+
+    const headers =
+      new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+
+
+    console.log(
+      'Sending approval request for newsletter:',
+      id
+    );
+
+
     return this.http.put<any>(
       `${this.API}/admin/newsletters/${id}/approve`,
-      {}
+      {},
+      {
+        headers
+      }
     );
 
   }
 
+
   // ==========================================
-// ADMIN - REJECT NEWSLETTER
-// Pending → Rejected
-// ==========================================
+  // ADMIN - REJECT NEWSLETTER
+  // Pending → Rejected
+  // ==========================================
 
-rejectNewsletter(
-  id: number
-): Observable<any> {
+  rejectNewsletter(
+    id: number
+  ): Observable<any> {
 
-  return this.http.post<any>(
-    `${this.API}/admin/newsletters/${id}/reject`,
-    {}
-  );
+    const token =
+      localStorage.getItem('token');
 
-}
+
+    const headers =
+      new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+
+
+    console.log(
+      'Sending rejection request for newsletter:',
+      id
+    );
+
+
+    return this.http.post<any>(
+      `${this.API}/admin/newsletters/${id}/reject`,
+      {},
+      {
+        headers
+      }
+    );
+
+  }
 
 
   // ==========================================
@@ -103,8 +149,21 @@ rejectNewsletter(
     id: number
   ): Observable<void> {
 
+    const token =
+      localStorage.getItem('token');
+
+
+    const headers =
+      new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+
+
     return this.http.delete<void>(
-      `${this.API}/newsletters/${id}`
+      `${this.API}/newsletters/${id}`,
+      {
+        headers
+      }
     );
 
   }

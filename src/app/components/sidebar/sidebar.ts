@@ -12,14 +12,15 @@ export class Sidebar {
 
   constructor(private router: Router) {}
 
-  logout() {
+  logout(): void {
 
-    // Clear any stored data if needed
-    localStorage.clear();
+    // Clear login/session information
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('loggedIn');
 
-    // Navigate back to login page
+    // Go to the COMMON login page
     this.router.navigate(['/login']);
-
-  }
+}
 
 }

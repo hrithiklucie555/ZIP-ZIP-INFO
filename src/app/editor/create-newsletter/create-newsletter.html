@@ -1,15 +1,27 @@
 <div class="create-container">
 
-  <!-- Page Header -->
+  <!-- ==========================
+       Page Header
+  =========================== -->
+
   <div class="page-header">
 
     <div>
-      <h1>Create Newsletter</h1>
+
+      <h1>
+        {{ isEditMode ? 'Edit Newsletter' : 'Create Newsletter' }}
+      </h1>
 
       <p>
-        Write your article and save it as a draft.
+        {{
+          isEditMode
+            ? 'Update your newsletter and save your changes.'
+            : 'Write your article and save it as a draft.'
+        }}
       </p>
+
     </div>
+
 
     <button
       type="button"
@@ -22,33 +34,51 @@
   </div>
 
 
-  <!-- Form Card -->
+  <!-- ==========================
+       Form Card
+  =========================== -->
+
   <div class="form-card">
 
-    <!-- Success Message -->
+
+    <!-- ==========================
+         Success Message
+    =========================== -->
+
     <div
       class="success-message"
       *ngIf="message"
     >
+
       {{ message }}
+
     </div>
 
 
-    <!-- Error Message -->
+    <!-- ==========================
+         Error Message
+    =========================== -->
+
     <div
       class="error-message"
       *ngIf="errorMessage"
     >
+
       {{ errorMessage }}
+
     </div>
 
 
-    <!-- Subject -->
+    <!-- ==========================
+         Subject
+    =========================== -->
+
     <div class="form-group">
 
       <label for="subject">
         Subject
       </label>
+
 
       <input
         id="subject"
@@ -60,12 +90,16 @@
     </div>
 
 
-    <!-- Category -->
+    <!-- ==========================
+         Category
+    =========================== -->
+
     <div class="form-group">
 
       <label for="category">
         Category
       </label>
+
 
       <select
         id="category"
@@ -109,12 +143,16 @@
     </div>
 
 
-    <!-- Article Content -->
+    <!-- ==========================
+         Article Content
+    =========================== -->
+
     <div class="form-group">
 
       <label for="content">
         Article Content
       </label>
+
 
       <textarea
         id="content"
@@ -126,16 +164,27 @@
     </div>
 
 
-    <!-- Buttons -->
+    <!-- ==========================
+         Buttons
+    =========================== -->
+
     <div class="form-actions">
+
+
+      <!-- Cancel -->
 
       <button
         type="button"
         class="cancel-button"
         (click)="cancel()"
       >
+
         Cancel
+
       </button>
+
+
+      <!-- Save -->
 
       <button
         type="button"
@@ -143,10 +192,20 @@
         [disabled]="isSubmitting"
         (click)="createNewsletter()"
       >
-        {{ isSubmitting ? 'Saving...' : 'Save as Draft' }}
+
+        {{
+          isSubmitting
+            ? 'Saving...'
+            : isEditMode
+              ? 'Save Changes'
+              : 'Save as Draft'
+        }}
+
       </button>
 
+
     </div>
+
 
   </div>
 

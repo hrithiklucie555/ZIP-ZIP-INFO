@@ -28,7 +28,7 @@ export class Sidebar {
 
     this.authService.logout();
 
-    this.router.navigate(['/subscriber-login']);
+    this.router.navigate(['/login']);
 
   }
 

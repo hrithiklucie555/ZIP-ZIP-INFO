@@ -12,4 +12,6 @@ export interface Subscriber {
 
     subscribedAt: string;
 
+    status: string;
+
 }

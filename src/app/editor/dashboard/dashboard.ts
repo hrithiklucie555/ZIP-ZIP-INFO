@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -52,7 +53,8 @@ export class Dashboard implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
 
@@ -449,5 +451,18 @@ export class Dashboard implements OnInit {
     });
 
   }
+  logout(): void {
+
+  localStorage.removeItem('token');
+
+  localStorage.removeItem('currentUser');
+
+  localStorage.removeItem('loggedIn');
+
+  localStorage.removeItem('role');
+
+  this.router.navigate(['/login']);
+
+}
 
 }

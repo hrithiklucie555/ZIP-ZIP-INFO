@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { CommonLogin } from './shared/common-login/common-login';
+import { ForgotPassword } from './shared/forgot-password/forgot-password';
 
 // ==========================
 // Admin
 // ==========================
 
-import { Login } from './admin/login/login';
 import { Dashboard } from './admin/dashboard/dashboard';
 import { Newsletters } from './admin/newsletters/newsletters';
 import { ManageNewsletters } from './admin/manage-newsletters/manage-newsletters';
@@ -13,13 +13,13 @@ import { Subscribers } from './admin/subscribers/subscribers';
 import { Reports } from './admin/reports/reports';
 import { Settings } from './admin/settings/settings';
 import { HelpSupport } from './admin/help-support/help-support';
+import { Editors } from './admin/editors/editors';
 
 // ==========================
 // Subscriber
 // ==========================
 
 import { Register } from './subscriber/register/register';
-import { Login as SubscriberLogin } from './subscriber/login/login';
 import { SubscriberHome } from './subscriber/home/home';
 import { Inbox } from './subscriber/inbox/inbox';
 import { ReadNewsletter } from './subscriber/read-newsletter/read-newsletter';
@@ -43,7 +43,8 @@ import { Layout as SubscriberLayout } from './subscriber/layout/layout';
 export const routes: Routes = [
 
   // ==========================
-  // Portal Selection
+  // Common Login
+  // Admin / Editor / Subscriber
   // ==========================
 
   {
@@ -51,18 +52,16 @@ export const routes: Routes = [
     component: CommonLogin
   },
 
-
-
-
-  // ==========================
-  // Admin Login
-  // ==========================
-
   {
     path: 'login',
-    component: Login
+    component: CommonLogin
   },
 
+  
+  {
+  path: 'forgot-password',
+  component: ForgotPassword
+  },
 
   // ==========================
   // Admin Layout
@@ -95,6 +94,11 @@ export const routes: Routes = [
       },
 
       {
+    path: 'editors',
+    component: Editors
+    },
+
+      {
         path: 'reports',
         component: Reports
       },
@@ -122,10 +126,7 @@ export const routes: Routes = [
     component: Register
   },
 
-  {
-    path: 'subscriber-login',
-    component: SubscriberLogin
-  },
+  
 
 
   // ==========================
@@ -179,9 +180,9 @@ export const routes: Routes = [
   },
 
   {
-  path: 'editor/create-newsletter',
-  component: CreateNewsletter
-},
+    path: 'editor/create-newsletter',
+    component: CreateNewsletter
+  },
 
 
   // ==========================
@@ -190,7 +191,8 @@ export const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: '',
+    pathMatch: 'full'
   }
 
 ];

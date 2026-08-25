@@ -24,6 +24,7 @@ import { NewsletterService } from '../../services/newsletter.service';
 
 type AdminNewsletter = Newsletter & {
   subject?: string;
+  title?: string;
   status?: string;
 };
 
@@ -98,7 +99,7 @@ export class Dashboard implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('Dashboard Loaded');
+    console.log('Admin Dashboard Loaded');
 
     this.loadDashboard();
 
@@ -106,7 +107,7 @@ export class Dashboard implements OnInit {
 
 
   // ==========================================
-  // LOAD ALL DASHBOARD DATA
+  // LOAD DASHBOARD
   // ==========================================
 
   loadDashboard(): void {
@@ -144,7 +145,7 @@ export class Dashboard implements OnInit {
           // ------------------------------------------
 
           this.totalSubscribers =
-            data.length;
+            this.subscribers.length;
 
 
           // ------------------------------------------
@@ -155,7 +156,7 @@ export class Dashboard implements OnInit {
             this.subscribers.filter(
               subscriber =>
                 subscriber.email
-                  .toLowerCase()
+                  ?.toLowerCase()
                   .endsWith('@gmail.com')
             ).length;
 
@@ -170,10 +171,19 @@ export class Dashboard implements OnInit {
 
           this.todaysSubscribers =
             this.subscribers.filter(
-              subscriber =>
-                new Date(
-                  subscriber.subscribedAt
-                ).toDateString() === today
+              subscriber => {
+
+                if (!subscriber.subscribedAt) {
+                  return false;
+                }
+
+                return (
+                  new Date(
+                    subscriber.subscribedAt
+                  ).toDateString() === today
+                );
+
+              }
             ).length;
 
 
@@ -181,7 +191,6 @@ export class Dashboard implements OnInit {
 
 
           console.log({
-
             totalSubscribers:
               this.totalSubscribers,
 
@@ -190,7 +199,6 @@ export class Dashboard implements OnInit {
 
             todaysSubscribers:
               this.todaysSubscribers
-
           });
 
         },
@@ -229,7 +237,7 @@ export class Dashboard implements OnInit {
 
 
           // ------------------------------------------
-          // Convert API response to AdminNewsletter
+          // Convert API response
           // ------------------------------------------
 
           this.newsletters =
@@ -243,11 +251,17 @@ export class Dashboard implements OnInit {
           this.totalNewsletters =
             this.newsletters.length;
 
-            this.publishedNewsletters =
-  this.newsletters.filter(
-    newsletter =>
-      newsletter.status?.toLowerCase() === 'published'
-  ).length;
+
+          // ------------------------------------------
+          // Published Newsletters
+          // ------------------------------------------
+
+          this.publishedNewsletters =
+            this.newsletters.filter(
+              newsletter =>
+                newsletter.status
+                  ?.toLowerCase() === 'published'
+            ).length;
 
 
           this.cdr.detectChanges();
@@ -256,7 +270,10 @@ export class Dashboard implements OnInit {
           console.log({
 
             totalNewsletters:
-              this.totalNewsletters
+              this.totalNewsletters,
+
+            publishedNewsletters:
+              this.publishedNewsletters
 
           });
 
@@ -284,13 +301,43 @@ export class Dashboard implements OnInit {
 
   approveNewsletter(id: number): void {
 
+    console.log(
+      'APPROVE BUTTON CLICKED'
+    );
+
+    console.log(
+      'Newsletter ID:',
+      id
+    );
+
+
+    // ------------------------------------------
+    // Validate ID
+    // ------------------------------------------
+
+    if (
+      id === null ||
+      id === undefined ||
+      Number.isNaN(Number(id))
+    ) {
+
+      console.error(
+        'Invalid newsletter ID:',
+        id
+      );
+
+      return;
+
+    }
+
+
+    // ------------------------------------------
+    // Check Login Token
+    // ------------------------------------------
+
     const token =
       localStorage.getItem('token');
 
-
-    // ------------------------------------------
-    // Check Login
-    // ------------------------------------------
 
     if (!token) {
 
@@ -298,31 +345,27 @@ export class Dashboard implements OnInit {
         'No authentication token found.'
       );
 
-      this.router.navigate(['/login']);
+      this.router.navigate([
+        '/login'
+      ]);
 
       return;
 
     }
 
 
-    console.log(
-      'Approving newsletter:',
-      id
-    );
-
-
     // ------------------------------------------
-    // Call Backend
+    // Call Approval API
     // ------------------------------------------
 
     this.newsletterService
-      .approveNewsletter(id)
+      .approveNewsletter(Number(id))
       .subscribe({
 
         next: (response) => {
 
           console.log(
-            'Newsletter approved:',
+            'Newsletter approved successfully:',
             response
           );
 
@@ -343,58 +386,141 @@ export class Dashboard implements OnInit {
             error
           );
 
+
+          console.error(
+            'Backend response:',
+            error.error
+          );
+
         }
 
       });
 
   }
 
+
+  // ==========================================
+  // REJECT NEWSLETTER
+  // Pending → Rejected
+  // ==========================================
+
   rejectNewsletter(id: number): void {
 
-  const token = localStorage.getItem('token');
+    console.log(
+      'REJECT BUTTON CLICKED'
+    );
 
-  if (!token) {
-    console.error('No authentication token found.');
-    return;
-  }
+    console.log(
+      'Newsletter ID:',
+      id
+    );
 
-  this.newsletterService.rejectNewsletter(id).subscribe({
 
-    next: (response) => {
+    // ------------------------------------------
+    // Validate ID
+    // ------------------------------------------
 
-      console.log('Newsletter rejected:', response);
-
-      // Reload dashboard data
-      this.loadDashboard();
-
-    },
-
-    error: (error) => {
+    if (
+      id === null ||
+      id === undefined ||
+      Number.isNaN(Number(id))
+    ) {
 
       console.error(
-        'Failed to reject newsletter:',
-        error
+        'Invalid newsletter ID:',
+        id
       );
+
+      return;
 
     }
 
-  });
 
-}
+    // ------------------------------------------
+    // Check Login Token
+    // ------------------------------------------
+
+    const token =
+      localStorage.getItem('token');
+
+
+    if (!token) {
+
+      console.error(
+        'No authentication token found.'
+      );
+
+      this.router.navigate([
+        '/login'
+      ]);
+
+      return;
+
+    }
+
+
+    // ------------------------------------------
+    // Call Reject API
+    // ------------------------------------------
+
+    this.newsletterService
+      .rejectNewsletter(Number(id))
+      .subscribe({
+
+        next: (response) => {
+
+          console.log(
+            'Newsletter rejected successfully:',
+            response
+          );
+
+
+          // ------------------------------------------
+          // Reload dashboard
+          // ------------------------------------------
+
+          this.loadDashboard();
+
+        },
+
+
+        error: (error) => {
+
+          console.error(
+            'Failed to reject newsletter:',
+            error
+          );
+
+
+          console.error(
+            'Backend response:',
+            error.error
+          );
+
+        }
+
+      });
+
+  }
 
 
   // ==========================================
   // LOGOUT
   // ==========================================
 
+  
   logout(): void {
 
-    localStorage.removeItem('loggedIn');
+  localStorage.removeItem('token');
 
-    localStorage.removeItem('token');
+  localStorage.removeItem('currentUser');
 
-    this.router.navigate(['/login']);
+  localStorage.removeItem('loggedIn');
 
-  }
+  localStorage.removeItem('role');
+
+  this.router.navigate(['/login']);
+
+}
 
 }

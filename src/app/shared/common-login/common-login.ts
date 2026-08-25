@@ -69,6 +69,11 @@ export class CommonLogin {
           JSON.stringify(response.user)
         );
 
+        localStorage.setItem(
+          'role',
+          response.role
+            );
+
         // Save role
         localStorage.setItem(
           'loggedIn',
@@ -112,6 +117,14 @@ export class CommonLogin {
 
     });
   }
+
+  goToForgotPassword(): void {
+
+  this.router.navigate([
+    '/forgot-password'
+  ]);
+
+}
   goToRegister(): void {
 
   this.router.navigate([
