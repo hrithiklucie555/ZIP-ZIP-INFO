@@ -424,3 +424,114 @@ tbody tr:hover{
     background:#1E40AF;
 
 }
+/* ==========================
+   Subscriber Status
+========================== */
+
+.status-badge {
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.status-badge.active {
+    background: #DCFCE7;
+
+    color: #166534;
+}
+
+.status-badge.inactive {
+    background: #FEE2E2;
+
+    color: #B91C1C;
+}
+
+
+/* ==========================
+   Action Buttons
+========================== */
+
+.action-buttons {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.status-btn {
+    background: #FEF3C7;
+
+    color: #92400E;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.status-btn:hover {
+    background: #FDE68A;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 900px) {
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons button {
+        width: 100%;
+    }
+
+}
+
+.pdf-btn {
+    background: #7C3AED;
+
+    color: white;
+
+    border: none;
+
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.pdf-btn:hover {
+    background: #6D28D9;
+
+    transform: translateY(-1px);
+}
