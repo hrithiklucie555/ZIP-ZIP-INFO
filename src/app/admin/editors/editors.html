@@ -1,375 +1,304 @@
-<div class="editors-page">
+<div class="editors-container">
 
-  <!-- =========================
-       Header
-  ========================== -->
+    <!-- ==========================
+         PAGE HEADER
+    =========================== -->
 
-  <div class="page-header">
+    <div class="top">
 
-    <div>
-      <h1>Manage Editors</h1>
+        <div>
+            <h1>Editors</h1>
 
-      <p>
-        Add, edit and manage editor accounts.
-      </p>
-    </div>
+            <p>
+                Total Editors:
+                <strong>{{ editors.length }}</strong>
+            </p>
+        </div>
 
-    <button
-      class="add-editor-btn"
-      type="button"
-      (click)="openAddForm()"
-    >
-      + Add Editor
-    </button>
+        <div class="top-actions">
 
-  </div>
+            <button
+                class="add-btn"
+                (click)="openAddForm()">
 
+                ➕ Add Editor
 
-  <!-- =========================
-       Messages
-  ========================== -->
+            </button>
 
-  @if (message) {
+            <button
+                class="export-btn"
+                (click)="exportEditorsPDF()">
 
-    <div class="success-message">
-      {{ message }}
-    </div>
+                📄 Export PDF
 
-  }
+            </button>
 
-  @if (errorMessage) {
-
-    <div class="error-message">
-      {{ errorMessage }}
-    </div>
-
-  }
-
-
-  <!-- =========================
-       Editor List
-  ========================== -->
-
-  <div class="editors-panel">
-
-    <div class="panel-header">
-
-      <div>
-
-        <h2>Editors</h2>
-
-        <p>
-          {{ editors.length }} editor(s) registered
-        </p>
-
-      </div>
+        </div>
 
     </div>
 
 
-    @if (loading) {
+    <!-- ==========================
+         MESSAGES
+    =========================== -->
 
-      <div class="loading">
+    <div
+        class="success-message"
+        *ngIf="message">
+
+        {{ message }}
+
+    </div>
+
+    <div
+        class="error-message"
+        *ngIf="errorMessage">
+
+        {{ errorMessage }}
+
+    </div>
+
+
+    <!-- ==========================
+         LOADING
+    =========================== -->
+
+    <div
+        class="loading"
+        *ngIf="loading">
+
         Loading editors...
-      </div>
 
-    }
-
-
-    @if (!loading && editors.length === 0) {
-
-      <div class="no-editors">
-
-        <h3>No Editors Found</h3>
-
-        <p>
-          Add an editor to get started.
-        </p>
-
-      </div>
-
-    }
+    </div>
 
 
-    @if (!loading && editors.length > 0) {
+    <!-- ==========================
+         EDITORS TABLE
+    =========================== -->
 
-      <div class="table-container">
+    <table *ngIf="!loading">
 
-        <table>
-
-          <thead>
+        <thead>
 
             <tr>
 
-              <th>ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Status</th>
-              <th>Actions</th>
+                <th>ID</th>
+
+                <th>Name</th>
+
+                <th>Email</th>
+
+                <th>Status</th>
+
+                <th>Actions</th>
 
             </tr>
 
-          </thead>
+        </thead>
 
 
-          <tbody>
+        <tbody>
 
-            @for (
-              editor of editors;
-              track editor.id
-            ) {
-
-              <tr>
+            <tr
+                *ngFor="let editor of editors">
 
                 <td>
-                  {{ editor.id }}
+                    {{ editor.id }}
                 </td>
 
                 <td>
-                  <strong>
                     {{ editor.name }}
-                  </strong>
                 </td>
 
                 <td>
-                  {{ editor.email }}
+                    {{ editor.email }}
                 </td>
 
                 <td>
 
-                  @if (
-                    editor.status?.toLowerCase() === 'active'
-                  ) {
+                    <span
+                        [class.active-status]="
+                            editor.status?.toLowerCase() === 'active'
+                        "
+                        [class.inactive-status]="
+                            editor.status?.toLowerCase() === 'inactive'
+                        ">
 
-                    <span class="status active">
-                      Active
+                        {{ editor.status }}
+
                     </span>
 
-                  } @else {
-
-                    <span class="status inactive">
-                      Inactive
-                    </span>
-
-                  }
-
                 </td>
-
 
                 <td>
 
-                  <div class="actions">
-
                     <button
-                      class="edit-btn"
-                      type="button"
-                      (click)="openEditForm(editor)"
-                    >
-                      ✏️ Edit
-                    </button>
+                        class="edit-btn"
+                        (click)="openEditForm(editor)">
 
-
-                    <button
-                      class="status-btn"
-                      type="button"
-                      (click)="toggleStatus(editor)"
-                    >
-
-                      {{
-                        editor.status?.toLowerCase() === 'active'
-                          ? 'Deactivate'
-                          : 'Activate'
-                      }}
+                        ✏ Edit
 
                     </button>
 
 
                     <button
-                      class="delete-btn"
-                      type="button"
-                      (click)="deleteEditor(editor)"
-                    >
-                      🗑 Delete
+                        class="status-btn"
+                        (click)="toggleStatus(editor)">
+
+                        {{
+                            editor.status?.toLowerCase() === 'active'
+                            ? '⏸ Deactivate'
+                            : '▶ Activate'
+                        }}
+
                     </button>
 
-                  </div>
+
+                    <button
+                        class="delete-btn"
+                        (click)="deleteEditor(editor)">
+
+                        🗑 Delete
+
+                    </button>
 
                 </td>
 
-              </tr>
+            </tr>
 
-            }
 
-          </tbody>
+            <!-- ==========================
+                 EMPTY STATE
+            =========================== -->
 
-        </table>
+            <tr
+                *ngIf="editors.length === 0">
 
-      </div>
+                <td
+                    colspan="5"
+                    class="empty">
+
+                    No editors found.
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <!-- ==========================
+         ADD / EDIT EDITOR MODAL
+    =========================== -->
+
+    @if(showForm){
+
+        <div class="modal-overlay">
+
+            <div class="modal">
+
+                <h2>
+
+                    {{
+                        isEditing
+                        ? 'Edit Editor'
+                        : 'Add Editor'
+                    }}
+
+                </h2>
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        [(ngModel)]="name"
+                        placeholder="Enter editor name">
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        [(ngModel)]="email"
+                        placeholder="Enter editor email">
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Password
+
+                        @if(isEditing){
+
+                            <small>
+                                Leave blank to keep current password.
+                            </small>
+
+                        }
+
+                    </label>
+
+                    <input
+                        type="password"
+                        [(ngModel)]="password"
+                        placeholder="Enter password">
+
+                </div>
+
+
+                <!-- MODAL BUTTONS -->
+
+                <div class="modal-buttons">
+
+                    <button
+                        class="cancel-btn"
+                        (click)="closeForm()">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        class="save-btn"
+                        (click)="saveEditor()">
+
+                        {{
+                            isEditing
+                            ? 'Save Changes'
+                            : 'Create Editor'
+                        }}
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
 
     }
 
-  </div>
-
 </div>
-
-
-<!-- =========================
-     ADD / EDIT EDITOR MODAL
-========================== -->
-
-@if (showForm) {
-
-  <div class="modal-overlay">
-
-    <div class="editor-modal">
-
-      <div class="modal-header">
-
-        <div>
-
-          <h2>
-            {{ isEditing ? 'Edit Editor' : 'Add Editor' }}
-          </h2>
-
-          <p>
-
-            {{
-              isEditing
-                ? 'Update editor account details.'
-                : 'Create a new editor account.'
-            }}
-
-          </p>
-
-        </div>
-
-
-        <button
-          class="close-btn"
-          type="button"
-          (click)="closeForm()"
-        >
-          ✕
-        </button>
-
-      </div>
-
-
-      <!-- Form -->
-
-      <form
-        (ngSubmit)="saveEditor()"
-      >
-
-        <!-- Name -->
-
-        <div class="form-group">
-
-          <label for="editorName">
-            Name
-          </label>
-
-          <input
-            id="editorName"
-            type="text"
-            name="name"
-            [(ngModel)]="name"
-            placeholder="Enter editor name"
-          >
-
-        </div>
-
-
-        <!-- Email -->
-
-        <div class="form-group">
-
-          <label for="editorEmail">
-            Email
-          </label>
-
-          <input
-            id="editorEmail"
-            type="email"
-            name="email"
-            [(ngModel)]="email"
-            placeholder="Enter editor email"
-          >
-
-        </div>
-
-
-        <!-- Password -->
-
-        <div class="form-group">
-
-          <label for="editorPassword">
-
-            Password
-
-            @if (isEditing) {
-              <small>
-                Leave blank to keep current password.
-              </small>
-            }
-
-          </label>
-
-          <input
-            id="editorPassword"
-            type="password"
-            name="password"
-            [(ngModel)]="password"
-            placeholder="Enter password"
-          >
-
-        </div>
-
-
-        <!-- Form Error -->
-
-        @if (errorMessage) {
-
-          <div class="form-error">
-            {{ errorMessage }}
-          </div>
-
-        }
-
-
-        <!-- Buttons -->
-
-        <div class="modal-actions">
-
-          <button
-            type="button"
-            class="cancel-btn"
-            (click)="closeForm()"
-          >
-            Cancel
-          </button>
-
-
-          <button
-            type="submit"
-            class="save-btn"
-            [disabled]="loading"
-          >
-
-            {{
-              loading
-                ? 'Saving...'
-                : (isEditing ? 'Update Editor' : 'Create Editor')
-            }}
-
-          </button>
-
-        </div>
-
-      </form>
-
-    </div>
-
-  </div>
-
-}

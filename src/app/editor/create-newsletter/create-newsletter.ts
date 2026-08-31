@@ -340,7 +340,7 @@ export class CreateNewsletter implements OnInit {
 
       this.http.put<any>(
 
-        `http://localhost:3000/newsletters/${this.newsletterId}`,
+        `http://localhost:3000/editor/newsletters/${this.newsletterId}`,
 
         newsletter,
 
